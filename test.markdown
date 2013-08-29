@@ -1,3 +1,39 @@
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Rez : Rez - An integrated package configuration, build and deployment system for software" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Rez</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/nerdvegas/rez">View on GitHub</a>
+
+          <h1 id="project_title">Rez</h1>
+          <h2 id="project_tagline">Rez - An integrated package configuration, build and deployment system for software</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/nerdvegas/rez/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/nerdvegas/rez/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="info" class="anchor" href="#info"><span class="octicon octicon-link"></span></a>INFO</h1>
+
+
 # Introduction
 
 ## What Is Rez?
@@ -42,3 +78,16 @@ A package is a particular version of a piece of software, or possibly data or co
 * boost-1.33.1
 * houdini-11.0.438
 * foo-2.9.0
+
+
+</section>
+    </div>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Rez maintained by <a href="https://github.com/nerdvegas">nerdvegas</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
