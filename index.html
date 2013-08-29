@@ -467,17 +467,18 @@ context file:
 
 <p>If you are ever curious about exactly how the current environment was resolved - and why exactly did I end up with Qt-4.2.0 rather than Qt-4.5.3? - the rez-context-image tool is very useful. Here is an example, showing how the environment was resolved for “latest vacuumHoudini”:</p>
 
-<p>IMG</p>
+<p><img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="A typical resolve" title="A typical resolve"></p>
 
 <p>Nodes in the ‘request’ box are the packages that were requested, and green nodes are the packages that were resolved for the current environment. The arrows show relationships between packages, and there are three different types:</p>
 
-<p>needs - This shows a standard package dependency.</p>
-
-<p>resolve - This shows that rez-config searched for this version of the package on the file system. Look toward the left of this diagram - “boost” is an inexact package request, and in this case rez-config had to search through REZ_PACKAGES_PATH to find a suitable version of boost. This is different to when package requests or requirements are specifically versioned - a ‘resolve’ only occurs if rez-config had to search for a package, within an inexact range.</p>
-
-<p>reduce - This happens when a package is added to the configuration, but either a subset or superset of that package is already in the configuration. This either has no effect, or ‘reduces’ the existing package request to a more specific request. In this example, “python” was in the configuration, and as a result of “h5py-1.2.1” being added, it’s requirement “python-2.5” was then added, which “reduced” the existing “python” package to the more specific, and in this case exact package, “python-2.5”.</p>
-
-<p>These “resolve graphs” can become extremely large. Rez-context-image supports a “--package” flag which can be used to reduce the graph down, so that it only contains packages that are directly or indirectly dependent on the specified package. In the example above, we could have specified “--package=numpy” to see only that part of the graph branching upwards from the numpy package.</p>
+<ol>
+<li>
+<strong>needs</strong> - This shows a standard package dependency.</li>
+<li>
+<strong>resolve</strong> - This shows that rez-config searched for this version of the package on the file system. Look toward the left of this diagram - “boost” is an inexact package request, and in this case rez-config had to search through REZ_PACKAGES_PATH to find a suitable version of boost. This is different to when package requests or requirements are specifically versioned - a ‘resolve’ only occurs if rez-config had to search for a package, within an inexact range.</li>
+<li>
+<strong>reduce</strong> - This happens when a package is added to the configuration, but either a subset or superset of that package is already in the configuration. This either has no effect, or ‘reduces’ the existing package request to a more specific request. In this example, “python” was in the configuration, and as a result of “h5py-1.2.1” being added, it’s requirement “python-2.5” was then added, which “reduced” the existing “python” package to the more specific, and in this case exact package, “python-2.5”.</li>
+</ol><p>These “resolve graphs” can become extremely large. Rez-context-image supports a “--package” flag which can be used to reduce the graph down, so that it only contains packages that are directly or indirectly dependent on the specified package. In the example above, we could have specified “--package=numpy” to see only that part of the graph branching upwards from the numpy package.</p>
 
 <h2>
 <a name="patching" class="anchor" href="#patching"><span class="octicon octicon-link"></span></a>Patching</h2>
