@@ -34,7 +34,95 @@
         <h1>
 <a name="rez-user-manual" class="anchor" href="#rez-user-manual"><span class="octicon octicon-link"></span></a>Rez User Manual</h1>
 
-<h2>
+<ul>
+<li>
+<a href="#introduction">Introduction</a>
+
+<ul>
+<li><a href="#what-is-rez">What Is Rez?</a></li>
+<li><a href="#what-is-rez-not">What Is Rez Not?</a></li>
+</ul>
+</li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#basic-concepts">Basic Concepts</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#rez-config">rez-config</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#rez-env">rez-env</a></li>
+<li><a href="#patching">Patching</a></li>
+<li><a href="#piping-and-rez-run">Piping and rez-run</a></li>
+<li><a href="#failed-resolves">Failed Resolves</a></li>
+<li><a href="#package-variants">Package Variants</a></li>
+<li>
+<a href="#rez-build">rez-build</a>
+
+<ul>
+<li><a href="#case-1-not-invoking-make">Case 1: Not invoking make</a></li>
+<li><a href="#case-2-invoking-make">Case 2: Invoking make</a></li>
+<li><a href="#cmake-arguments">Cmake Arguments</a></li>
+<li><a href="#make-arguments">Make Arguments</a></li>
+<li><a href="#local-package-installs">Local Package Installs</a></li>
+<li><a href="#cmake-integration">Cmake Integration</a></li>
+<li>
+<a href="#cmake-modules">CMake Modules</a>
+
+<ul>
+<li><a href="#rez_install_cmake">rez_install_cmake</a></li>
+<li><a href="#rez_install_files">rez_install_files</a></li>
+<li><a href="#rez_install_python">rez_install_python</a></li>
+</ul>
+</li>
+<li><a href="#build-time-dependencies">Build-time Dependencies</a></li>
+<li><a href="#building-custom-targets">Building Custom Targets</a></li>
+</ul>
+</li>
+<li><a href="#timestamping">Timestamping</a></li>
+<li><a href="#anti-packages-and-the-conflict-operator">Anti-Packages and the Conflict Operator</a></li>
+<li><a href="#weak-package-references">Weak Package References</a></li>
+<li>
+<a href="#rez-release">rez-release</a>
+
+<ul>
+<li><a href="#the-release-process">The Release Process</a></li>
+</ul>
+</li>
+<li><a href="#bundles">Bundles</a></li>
+<li><a href="#wrappers">Wrappers</a></li>
+<li><a href="#exposing-third-party-software-to-rez">Exposing Third-Party Software to Rez</a></li>
+<li>
+<a href="#more-tools">More Tools</a>
+
+<ul>
+<li><a href="#rez-make-yaml">rez-make-yaml</a></li>
+<li><a href="#rez-info">rez-info</a></li>
+<li><a href="#rez-diff">rez-diff</a></li>
+<li><a href="#rez-help">rez-help</a></li>
+<li><a href="#rez-which">rez-which</a></li>
+<li><a href="#rez-config-list">rez-config-list</a></li>
+<li><a href="#rez-depends">rez-depends</a></li>
+</ul>
+</li>
+<li>
+<a href="#conventions">Conventions</a>
+
+<ul>
+<li><a href="#ext-symlink-for-3rd-party-software">‘ext’ symlink for 3rd-party software</a></li>
+<li><a href="#single-variants">single variants</a></li>
+<li><a href="#versioning-internal-software">Versioning (Internal Software)</a></li>
+<li><a href="#versioning-external-software">Versioning (External Software)</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li>
+<a href="#common-pitfalls">Common Pitfalls</a>
+
+<ul>
+<li><a href="#inexact-package-dependencies-in-c-projects">Inexact package dependencies in C++ projects</a></li>
+</ul>
+</li>
+<li><a href="#system-environment-variables">System Environment Variables</a></li>
+<li><a href="#further-work">Further Work</a></li>
+</ul><h2>
 <a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
 <h3>
@@ -97,8 +185,9 @@
 
 <p>Let’s say that we want to make a request for the packages foo-1.0.0 and hey-1.8.0. The result would be:</p>
 
-<p>request: foo-1.0.0, hey-1.8.0
-response: foo-1.0.0, hey-1.8.0, boo-3.3, bah-2.5.0, ho-5.0.0</p>
+<pre><code>request: foo-1.0.0, hey-1.8.0
+response: foo-1.0.0, hey-1.8.0, boo-3.3, bah-2.5.0, ho-5.0.0
+</code></pre>
 
 <p>Let’s take a slightly different example:</p>
 
@@ -106,8 +195,9 @@ response: foo-1.0.0, hey-1.8.0, boo-3.3, bah-2.5.0, ho-5.0.0</p>
 
 <p>Here the result of a rez-config request would be:</p>
 
-<p>request: foo-1.0.0, hey-1.8.0
-response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)</p>
+<pre><code>request: foo-1.0.0, hey-1.8.0
+response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)
+</code></pre>
 
 <p>In this case, the request was not resolvable, because foo and hey need different versions of the same package (bah). Rez does not allow this (“but what about static libraries!” I hear the C++ programmers cry. We’ll get to that later, in build-time dependencies).</p>
 
@@ -120,32 +210,61 @@ response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)</p>
 
 <p>Before an in-depth discussion of the Rez tools, we need to describe how the system deals with version numbers. Packages in the Rez system are versioned using the format:</p>
 
-<p><a href=".(a-z%20%7C%20(1-9">a-z | (1-9)(0-9)*</a>(0-9)*))*  (for the regular expression geeks)</p>
+<pre><code>[a-z | (1-9)(0-9)*](.(a-z | (1-9)(0-9)*))*  (for the regular expression geeks)
+</code></pre>
 
 <p>In other words, the following are examples of valid package versioning:</p>
 
-<p>foo
-foo-1
-foo-1.2
-foo-1.2.3
-foo-1.2.3.800.7
-foo-1.2.3.a
-foo-1.b.1</p>
+<ul>
+<li>foo</li>
+<li>foo-1</li>
+<li>foo-1.2</li>
+<li>foo-1.2.3</li>
+<li>foo-1.2.3.800.7</li>
+<li>foo-1.2.3.a</li>
+<li>foo-1.b.1</li>
+</ul><p>When requesting packages in Rez, you do not need to ask for a specific version of a package - you can instead ask for an inexact version. For example, let’s assume that the single package foo-5.6.1 exists on disk, and there are no other foo packages. The following package descriptions will all resolve to foo-5.6.1:</p>
 
-<p>When requesting packages in Rez, you do not need to ask for a specific version of a package - you can instead ask for an inexact version. For example, let’s assume that the single package foo-5.6.1 exists on disk, and there are no other foo packages. The following package descriptions will all resolve to foo-5.6.1:</p>
+<table>
+<thead><tr>
+<th>Package Request</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>foo</td>
+<td>any version of foo</td>
+</tr>
+<tr>
+<td>foo-5</td>
+<td>foo-5, or foo-5.X(.X.X.X...)</td>
+</tr>
+<tr>
+<td>foo-5.6</td>
+<td>foo-5.6, or foo-5.X(.X.X.X...)</td>
+</tr>
+<tr>
+<td>foo-5.6.1</td>
+<td>exact match</td>
+</tr>
+<tr>
+<td>foo-5+</td>
+<td>foo-5(.X.X...) or greater</td>
+</tr>
+<tr>
+<td>foo-5+&lt;5.7</td>
+<td>foo-5(.X.X...) or greater, but less than foo-5.7</td>
+</tr>
+<tr>
+<td>foo-0+&lt;4.5</td>
+<td>any foo version less than foo-4.5</td>
+</tr>
+</tbody>
+</table><p>It is also possible to describe disparate regions in an inexact version, although in practice it would be rare to use this description directly (it exists because it is used internally by the resolution algorithm):</p>
 
-<p>foo (means “any version of foo”)
-foo-5 (“foo-5, or foo-5.X(.X.X.X...)”)
-foo-5.6 (same reason as above)
-foo-5.6.1 (exact match)
-foo-5+ (“foo-5(.X.X...) or greater”)
-foo-5+&lt;5.7 (“foo-5(.X.X...) or greater, but less than foo-5.7”)
-foo-0+&lt;4.5 (any foo version less than foo-4.5)</p>
-
-<p>It is also possible to describe disparate regions in an inexact version, although in practice it would be rare to use this description directly (it exists because it is used internally by the resolution algorithm):</p>
-
-<p>foo-5.6|6.3 (“foo- 5.6 OR 6.3”)
-foo-3|5+ (“foo- 3 OR (5 or greater) ”)</p>
+<pre><code>foo-5.6|6.3 (“foo- 5.6 OR 6.3”)
+foo-3|5+ (“foo- 3 OR (5 or greater) ”)
+</code></pre>
 
 <h2>
 <a name="rez-config" class="anchor" href="#rez-config"><span class="octicon octicon-link"></span></a>rez-config</h2>
@@ -158,65 +277,59 @@ foo-3|5+ (“foo- 3 OR (5 or greater) ”)</p>
 
 <p>So let’s start with some usage cases. Let’s say we want an environment with a specific version of houdini in it:</p>
 
-<blockquote>
-<p>rez-config houdini-11.0.438
-successful configuration found after 0 failed attempts.</p>
-</blockquote>
+<pre><code>&gt; rez-config houdini-11.0.438
+successful configuration found after 0 failed attempts.
+</code></pre>
 
 <p>Not very exiting, and what’s this “failed attempts” all about? More on this later. rez-config has done something here, but you haven’t specified what information you want. Let’s try again:</p>
 
-<blockquote>
-<p>rez-config --print-packages houdini-11.0.438
+<pre><code>&gt; rez-config --print-packages houdini-11.0.438
 successful configuration found after 0 failed attempts.
 python-2.5
 boost-1.37.0
 houdini-11.0.438
-lin64</p>
-</blockquote>
+lin64
+</code></pre>
 
 <p>So here rez-config is showing you the list of packages that an environment configured for “houdini-11.0.438” will actually contain. So let’s say we want the latest version of houdini, rather than a specific version:</p>
 
-<blockquote>
-<p>rez-config --print-packages houdini
+<pre><code>&gt; rez-config --print-packages houdini
 successful configuration found after 0 failed attempts.
 python-2.5
 boost-1.37.0
 houdini-11.0.477
-lin64</p>
-</blockquote>
+lin64
+</code></pre>
 
 <p>So we’ve gotten 11.0.477 and at the time of writing, this is the latest houdini version available. But wait - doesn’t “houdini” match to “any version of houdini,” according to the last chapter? Why did we get the latest version? the answer is in a default rez-config flag ‘--mode’, which is missing from our example:</p>
 
-<blockquote>
-<p>rez-config --mode=latest --print-packages houdini
+<pre><code>&gt; rez-config --mode=latest --print-packages houdini
 successful configuration found after 0 failed attempts.
 python-2.5
 boost-1.37.0
 houdini-11.0.477
-lin64</p>
-</blockquote>
+lin64
+</code></pre>
 
 <p>So here the output is the same. Available modes are earliest, latest and none. ‘None’ exists only for debugging purposes, and ‘earliest’ I expect to be rarely used. When rez-config is confronted with an inexact package which it can resolve no further, it will then go to the file system in order to resolve it, and it’s this ‘mode’ flag which determines how the search is done.</p>
 
 <p>You can use any kind of inexact versioning to describe the packages that you want. Bear in mind you may have to escape with single quotes (‘’) due to bash. Here’s an example where I want an environment with the latest version of delight, but less than 9.1:</p>
 
-<blockquote>
-<p>rez-config --print-packages 'delight-0+&lt;9.1'
+<pre><code>&gt; rez-config --print-packages 'delight-0+&lt;9.1'
 successful configuration found after 0 failed attempts.
 delight-9.0.58
-lin64</p>
-</blockquote>
+lin64
+</code></pre>
 
 <p>Isn’t this fun. Let’s try something more interesting, and ask for an environment with more than one package. So note than in our request for ‘latest houdini’, one of the resolved packages was boost-1.37.0, and the version of houdini resolved was 11.0.477. What will happen if we request houdini in combination with a different version of boost? We might expect it to fail, let’s see:</p>
 
-<blockquote>
-<p>rez-config --print-packages houdini boost-1.33.1
+<pre><code>&gt; rez-config --print-packages houdini boost-1.33.1
 successful configuration found after 3 failed attempts.
 python-2.5
 boost-1.33.1
 houdini-10.0.686
-lin64</p>
-</blockquote>
+lin64
+</code></pre>
 
 <p>What the? The configuration did not fail... but notice that it’s returned us a different version of houdini, one that isn’t the latest. Notice also that there were three “failed attempts.” What’s going on?</p>
 
@@ -888,26 +1001,40 @@ eek-5.4.3
 
 <p>A package request combined with an anti-package request will cause a conflict only if the package request falls entirely inside the anti-package version range - otherwise, the result is the difference of the two. To put this in less confusing terms, consider these examples:</p>
 
-<p>Package
-Anti-Package
-Resolved Package
-foo-3.2
-!foo
-conflict
-foo-3.5
-!foo-3
-conflict
-foo-7
-!foo-3
-foo-7
-foo-4+
-!foo-5+
-foo-4
-foo
-!foo-3
-foo-0+&lt;3|4+</p>
-
-<h2>
+<table>
+<thead><tr>
+<th>Package</th>
+<th>Anti-Package</th>
+<th>Resolved Package</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>foo-3.2</td>
+<td>!foo</td>
+<td><strong>conflict</strong></td>
+</tr>
+<tr>
+<td>foo-3.5</td>
+<td>!foo-3</td>
+<td><strong>conflict</strong></td>
+</tr>
+<tr>
+<td>foo-7</td>
+<td>!foo-3</td>
+<td>foo-7</td>
+</tr>
+<tr>
+<td>foo-4+</td>
+<td>!foo-5+</td>
+<td>foo-4</td>
+</tr>
+<tr>
+<td>foo</td>
+<td>!foo-3</td>
+<td>foo-0+&lt;3</td>
+</tr>
+</tbody>
+</table><h2>
 <a name="weak-package-references" class="anchor" href="#weak-package-references"><span class="octicon octicon-link"></span></a>Weak Package References</h2>
 
 <p>A weak package reference is a way of saying “I do not need this package, but if it exists then it MUST lie within the version range I specify.” Consider this example for the theoretical package bah:</p>
@@ -1220,32 +1347,35 @@ help:
 
 <p>The following table describes the versioning scheme that should be used for different types of packages. If a package contains multiple different types of targets (for example, C++ and python) then it should use the more verbose versioning scheme (ie, the one with more numbers).</p>
 
-<p>Package Type
-Versioning Scheme
-Version Update Strategy
-C++
-MAJOR.MINOR.PATCH
-Update...
-PATCH: When an ABI-compatible change is made, typically a bug fix.
-MINOR: When a change has been made which affects the ABI, but is not a major change. Any header changes usually mean a minor update. This is the most common type of update. Added functionality falls under this category.
-MAJOR: When a major change is made.
-Python API / Other Scripting Language API
-MAJOR.MINOR.PATCH
-Update...
-PATCH: When a minor change is made, and the API remains backwards compatible. Typically a bug fix.
-MINOR: When a non-major change is made, for example some added functionality. The API can change, but it MUST remain backwards compatible (for example, it may be added to).
-MAJOR: When ANY change is made which breaks API backwards compatibility, no matter how small. This suggests that an attempt should always be made to retain the same API, unless a major update is made.
-Command line Tool (bash, python etc)
-MAJOR.MINOR
-Update...
-MINOR: When a change is made which retains the tool’s command-line interface (ie flags or options may be added, but existing flags do not change).
-MAJOR: When a change is made which also changes its command-line interface in a non-backwards-compatible way.
-Other (data, configuration information)
-MAJOR [ .MINOR ]
-Select the appropriate versioning scheme depending on the situation.
-versioning of packages</p>
-
-<p>Please note that if an API does not change, but the underlying implementation changes in such a way that the API changes behaviour, then this is still regarded as an API change. For example, consider the following changes to a C++ package:</p>
+<table>
+<thead><tr>
+<th>Package Type</th>
+<th>Versioning Scheme</th>
+<th>Version Update Strategy</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>C++</td>
+<td>MAJOR.MINOR.PATCH</td>
+<td>PATCH: When an API-compatible change is made, typically a bug fix. MINOR: When a change has been made which affects the API, but is not a major change. Any header changes usually mean a minor update. This is the most common type of update. Added functionality falls under this category. MAJOR: When a major change is made.</td>
+</tr>
+<tr>
+<td>Python API / Other Scripting Language API</td>
+<td>MAJOR.MINOR.PATCH</td>
+<td>PATCH: When a minor change is made, and the API remains backwards compatible. Typically a bug fix. MINOR: When a non-major change is made, for example some added functionality. The API can change, but it MUST remain backwards compatible (for example, it may be added to). MAJOR: When ANY change is made which breaks API backwards compatibility, no matter how small. This suggests that an attempt should always be made to retain the same API, unless a major update is made.</td>
+</tr>
+<tr>
+<td>Command line Tool (bash, python etc)</td>
+<td>MAJOR.MINOR</td>
+<td>MINOR: When a change is made which retains the tool’s command-line interface (ie flags or options may be added, but existing flags do not change). MAJOR: When a change is made which also changes its command-line interface in a non-backwards-compatible way.</td>
+</tr>
+<tr>
+<td>Other (data, configuration information)</td>
+<td>MAJOR [ .MINOR ]</td>
+<td>Select the appropriate versioning scheme depending on the situation.</td>
+</tr>
+</tbody>
+</table><p>Please note that if an API does not change, but the underlying implementation changes in such a way that the API changes behaviour, then this is still regarded as an API change. For example, consider the following changes to a C++ package:</p>
 
 <pre><code>(in foo.h)
 int getNumFoo();
@@ -1267,19 +1397,30 @@ int getNumFoo()
 
 <p>The following table describes the versioning scheme that should be used when listing requirements for a package. If a required package contains different types of targets, then the versioning scheme you should use depends on which parts of the package you use - for example, if you just use the python part of a package, then you should follow the python dependency versioning scheme. However if you were using both the python and C++ APIs of a package, then you should use the more verbose versioning scheme.</p>
 
-<p>Required Package Type
-Versioning Scheme
-C++
-MAJOR.MINOR
-Python API / Other Scripting Language API
-MAJOR[.MINOR]
-Command line Tool (bash, python etc)
-MAJOR
-Other (data, configuration information)
-[ MAJOR ]
-versioning of package requirements</p>
-
-<p>Package requirements’ versioning is less explicit than the packages themselves. This is to minimise the amount of re-releasing of packages that has to occur - it stands to reason that if a new package version is released, but its interface does not break backwards compatibility, and it’s behaviour doesn’t change (except to fix a bug or add new functionality, within reason), then it should not be necessary to re-release packages that are dependent on it.</p>
+<table>
+<thead><tr>
+<th>Required Package Type</th>
+<th>Versioning Scheme</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>C++</td>
+<td>MAJOR.MINOR</td>
+</tr>
+<tr>
+<td>Python API / Other Scripting Language API</td>
+<td>MAJOR[.MINOR]</td>
+</tr>
+<tr>
+<td>Command line Tool (bash, python etc)</td>
+<td>MAJOR</td>
+</tr>
+<tr>
+<td>Other (data, configuration information)</td>
+<td>[ MAJOR ]</td>
+</tr>
+</tbody>
+</table><p>Package requirements’ versioning is less explicit than the packages themselves. This is to minimise the amount of re-releasing of packages that has to occur - it stands to reason that if a new package version is released, but its interface does not break backwards compatibility, and it’s behaviour doesn’t change (except to fix a bug or add new functionality, within reason), then it should not be necessary to re-release packages that are dependent on it.</p>
 
 <p>Of particular note is the versioning scheme of python/script requirements. In theory, if you have a package that depends on a python module “pyFoo”, and at the time of creating this package, it was developed with, say, “pyFoo-3.4.1”, then you should be able to list your requirement as “pyFoo-3.4+&lt;4”. This is because versions such as 3.5, 3.6 etc should retain API backwards compatibility, but 4.X probably won’t. The “3.4+” is needed, because you might be using a feature that exists in 3.4.X, but was only introduced recently, and doesn’t exist in, say, “3.2.X”. In practise, this versioning approach may be too loose though - it may be that simply sticking to MAJOR.MINOR is the safer approach, and the extra package releases needed as a result are a worthwhile tradeoff. The jury is out on this at the moment.</p>
 
