@@ -597,9 +597,12 @@ python-2.5          /.../software/packages/python/2.5/lin64
 number of failed attempts: 0
 </code></pre>
 
-<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/small_resolve.jpg" alt="Example resolve" title="Example resolve"></p>
-
-<p>From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:</p>
+<table><tr>
+<td>
+<img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/small_resolve.jpg" alt="Example resolve">
+</td>
+<td></td>
+</tr></table><p>From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:</p>
 
 <pre><code>]$ rez-env nkDefocus python-2.6
 conflict 0: lin64 nkDefocus-0.0.0 python-2.6 nuke-6.2.4
