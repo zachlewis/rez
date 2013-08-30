@@ -597,7 +597,7 @@ python-2.5          /.../software/packages/python/2.5/lin64
 number of failed attempts: 0
 </code></pre>
 
-<p>IMG</p>
+<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/small_resolve.jpg" alt="Example resolve" title="Example resolve"></p>
 
 <p>From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:</p>
 
@@ -626,7 +626,7 @@ config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictEr
 <pre><code>$] rez-config --max-fails=0 --dot-file=fail.jpg nkDefocus python-2.6
 </code></pre>
 
-<p>IMG</p>
+<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/failed_resolve.jpg" alt="A failed resolve" title="A failed resolve"></p>
 
 <p>Here we can see what has happened - python-2.5 is required by nuke-6.2.4, which rez-config resolved (ie found on the file system) from a request for nuke-6.2, which was required by nkDefocus-0.0.0, which was resolved from the request for nkDefocus... which clashes with the request for python-2.6. The conflict is shown as a bold red arrow labelled “CONFLICT” (in case you missed it).</p>
 
@@ -636,7 +636,7 @@ config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictEr
 $] rez-dot --conflict-only fail.dot
 </code></pre>
 
-<p>IMG</p>
+<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/failed_resolve_conflict_only.jpg" alt="A failed resolve" title="A failed resolve"></p>
 
 <h2>
 <a name="package-variants" class="anchor" href="#package-variants"><span class="octicon octicon-link"></span></a>Package Variants</h2>
