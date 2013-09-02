@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Fix markdown so it behaves.
+# note: gfm is a tool from the 'github-markdown' ruby gem.
+#
+
+cd `dirname $0`
+cat ../_start.html > ../index.html
+./fix_md.py >> ./_tmp.md
+gfm ./_tmp.md >> ../index.html
+rm ./_tmp.md
+cat ../_end.html >> ../index.html

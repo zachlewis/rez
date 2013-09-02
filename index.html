@@ -5,10 +5,7 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Rez : Rez - An integrated package configuration, build and deployment system for software" />
-
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/simplegrid.css">
-
     <title>Rez</title>
   </head>
 
@@ -32,38 +29,13 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a name="rez-user-manual" class="anchor" href="#rez-user-manual"><span class="octicon octicon-link"></span></a>Rez User Manual</h1>
-
-<!-- TESTING -->
-<div class="grid grid-pad">
-<div class="col-1-3">
-<div class="content">
-<h3>col-1-3</h3>
-</div>
-</div>
-<div class="col-1-3">
-<div class="content">
-<img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/small_resolve.jpg" alt="Example resolve">
-<h2>Middle?</h2>
-</div>
-</div>
-<div class="col-1-3">
-<div class="content">
-<h3>col-1-3</h3>
-</div>
-</div>
-</div>
-
 <ul>
-<li>
-<a href="#introduction">Introduction</a>
+<li><a href="#introduction">Introduction</a>
 
 <ul>
 <li><a href="#what-is-rez">What Is Rez?</a></li>
 <li><a href="#what-is-rez-not">What Is Rez Not?</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#overview">Overview</a></li>
 <li><a href="#basic-concepts">Basic Concepts</a></li>
 <li><a href="#versioning">Versioning</a></li>
@@ -74,8 +46,7 @@
 <li><a href="#piping-and-rez-run">Piping and rez-run</a></li>
 <li><a href="#failed-resolves">Failed Resolves</a></li>
 <li><a href="#package-variants">Package Variants</a></li>
-<li>
-<a href="#rez-build">rez-build</a>
+<li><a href="#rez-build">rez-build</a>
 
 <ul>
 <li><a href="#case-1-not-invoking-make">Case 1: Not invoking make</a></li>
@@ -84,34 +55,28 @@
 <li><a href="#make-arguments">Make Arguments</a></li>
 <li><a href="#local-package-installs">Local Package Installs</a></li>
 <li><a href="#cmake-integration">Cmake Integration</a></li>
-<li>
-<a href="#cmake-modules">CMake Modules</a>
+<li><a href="#cmake-modules">CMake Modules</a>
 
 <ul>
 <li><a href="#rez_install_cmake">rez_install_cmake</a></li>
 <li><a href="#rez_install_files">rez_install_files</a></li>
 <li><a href="#rez_install_python">rez_install_python</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#build-time-dependencies">Build-time Dependencies</a></li>
 <li><a href="#building-custom-targets">Building Custom Targets</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#timestamping">Timestamping</a></li>
 <li><a href="#anti-packages-and-the-conflict-operator">Anti-Packages and the Conflict Operator</a></li>
 <li><a href="#weak-package-references">Weak Package References</a></li>
-<li>
-<a href="#rez-release">rez-release</a>
+<li><a href="#rez-release">rez-release</a>
 
 <ul>
 <li><a href="#the-release-process">The Release Process</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#bundles">Bundles</a></li>
 <li><a href="#wrappers">Wrappers</a></li>
 <li><a href="#exposing-third-party-software-to-rez">Exposing Third-Party Software to Rez</a></li>
-<li>
-<a href="#more-tools">More Tools</a>
+<li><a href="#more-tools">More Tools</a>
 
 <ul>
 <li><a href="#rez-make-yaml">rez-make-yaml</a></li>
@@ -121,38 +86,34 @@
 <li><a href="#rez-which">rez-which</a></li>
 <li><a href="#rez-config-list">rez-config-list</a></li>
 <li><a href="#rez-depends">rez-depends</a></li>
-</ul>
-</li>
-<li>
-<a href="#conventions">Conventions</a>
+</ul></li>
+<li><a href="#conventions">Conventions</a>
 
 <ul>
 <li><a href="#ext-symlink-for-3rd-party-software">‘ext’ symlink for 3rd-party software</a></li>
 <li><a href="#single-variants">single variants</a></li>
 <li><a href="#versioning-internal-software">Versioning (Internal Software)</a></li>
 <li><a href="#versioning-external-software">Versioning (External Software)</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
-<li>
-<a href="#common-pitfalls">Common Pitfalls</a>
+<li><a href="#common-pitfalls">Common Pitfalls</a>
 
 <ul>
 <li><a href="#inexact-package-dependencies-in-c-projects">Inexact package dependencies in C++ projects</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="#system-environment-variables">System Environment Variables</a></li>
 <li><a href="#further-work">Further Work</a></li>
-</ul><h2>
-<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+</ul>
 
-<h3>
-<a name="what-is-rez" class="anchor" href="#what-is-rez"><span class="octicon octicon-link"></span></a>What Is Rez?</h3>
+<p><br></p>
+
+<h2><a name='introduction' class='anchor' href='#introduction'></a> Introduction</h2>
+
+<h3><a name='what-is-rez' class='anchor' href='#what-is-rez'></a> What Is Rez?</h3>
 
 <p>Rez is a suite of tools for resolving a list of ‘packages’ (versioned software) and their dependencies, into an environment that does not contain any version clashes. Rez also includes a cmake-based build system, which is integrated into the package resolution system, and a deployment system, for publishing new packages.</p>
 
-<h3>
-<a name="what-is-rez-not" class="anchor" href="#what-is-rez-not"><span class="octicon octicon-link"></span></a>What Is Rez Not?</h3>
+<h3><a name='what-is-rez-not' class='anchor' href='#what-is-rez-not'></a> What Is Rez Not?</h3>
 
 <p>Rez is not a production environment management system, it is a package configuration system. To illustrate the difference, consider:</p>
 
@@ -164,25 +125,23 @@
 
 <p>This decoupling allows the user who does not need to be working in a production environment (eg, someone developing core tools) to use only those packages they need. It also guarantees that only valid, non-clashing environments are ever generated.</p>
 
-<h2>
-<a name="overview" class="anchor" href="#overview"><span class="octicon octicon-link"></span></a>Overview</h2>
+<h2><a name='overview' class='anchor' href='#overview'></a> Overview</h2>
 
 <p>The ‘package resolution algorithm’ is the main component of Rez and is written in python, with supporting tools written in python and bash. It has cmake integration, and comes with a set of cmake modules for building common types of targets, such as python scripts. The python component is written as an API, so we can programmatically manage environment configuration in future.</p>
 
 <p>There are four major tools that make up the system, and a smattering of support tools. They can be thought of as a stack, where the tools at the bottom underpin those at the top:</p>
 
-<p>IMG</p>
+<div align="center">
+<img style="width:209px; height:273px;" src="images/stack.jpg" alt="Application stack">
+</div>
 
 <p>This manual will start with the basic concepts of the system, and will illustrate its use in a run-time context. Later chapters will introduce the build system support, and more advanced topics. Tools will be introduced from the bottom of the stack upwards - it is necessary to understand the underpinning tools first, before their dependent tools can be described.</p>
 
-<p>A note on conventions in this document. Blue text like this illustrates commands run on the terminal, command output, or file contents. Green text like this represents file system structures.</p>
-
-<h2>
-<a name="basic-concepts" class="anchor" href="#basic-concepts"><span class="octicon octicon-link"></span></a>Basic Concepts</h2>
+<h2><a name='basic-concepts' class='anchor' href='#basic-concepts'></a> Basic Concepts</h2>
 
 <p>Rez manages packages. You request a list of packages from rez-config, and it resolves this request, if possible. If the resolution is not possible, the system can supply you with the relevant information to determine why this is so. You typically want to resolve a list of packages because you want to create an environment in which you can use them in combination, without conflicts occurring. A conflict occurs when there is a request for two or more different versions of the same package - a version clash.</p>
 
-<p>Rez lets you describe the environment you want in a natural way. For example, you can say:
+<p>Rez lets you describe the environment you want in a natural way. For example, you can say:<br>
 “I want an environment with...”</p>
 
 <ul>
@@ -192,15 +151,21 @@
 <li>“...rv-3.something or greater”</li>
 <li>“...the latest houdini which works with boost-1.37.0”</li>
 <li>“...PyQt-2.2 or greater, but less than PyQt-4.5.3”</li>
-</ul><p>A package is a particular version of a piece of software, or possibly data or configuration information, that resides in a single physical location on disk. The rez system does not distinguish between external and internal software. Some examples of packages include:</p>
+</ul>
+
+<p>A package is a particular version of a piece of software, or possibly data or configuration information, that resides in a single physical location on disk. The rez system does not distinguish between external and internal software. Some examples of packages include:</p>
 
 <ul>
 <li>boost-1.33.1</li>
 <li>houdini-11.0.438</li>
 <li>foo-2.9.0</li>
-</ul><p>Packages have dependencies, ie other packages that they need in order to function. When you request a list of packages from rez, it analyses the dependencies of all the packages in the request, and returns you a resolved list of all the packages you actually need. For example, consider the following:</p>
+</ul>
 
-<p>IMG</p>
+<p>Packages have dependencies, ie other packages that they need in order to function. When you request a list of packages from rez, it analyses the dependencies of all the packages in the request, and returns you a resolved list of all the packages you actually need. For example, consider the following:</p>
+
+<div align="center">
+<img style="width:500px; height:182px;" src="images/deps1.jpg" alt="Dependency example">
+</div>
 
 <p>In this example, there are five packages on disk (for the moment we don’t care where they actually reside on the file system). Let the arrows in the diagram, and in all diagrams from here on, denote dependencies - for example, package hey-1.8.0 requires package ho-5.0.0.</p>
 
@@ -212,7 +177,9 @@ response: foo-1.0.0, hey-1.8.0, boo-3.3, bah-2.5.0, ho-5.0.0
 
 <p>Let’s take a slightly different example:</p>
 
-<p>IMG</p>
+<div align="center">
+<img style="width:600px; height:156px;" src="images/deps2.jpg" alt="Dependency example">
+</div>
 
 <p>Here the result of a rez-config request would be:</p>
 
@@ -226,8 +193,7 @@ response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)
 
 <p>These examples are simple, but they illustrate a key concept - rez-config can take a list of packages that you request, and resolve it into a full list, including dependencies, which have been verified for compatibility. You do not need to have knowledge of those dependencies, or of possible conflicts - the system will not allow an invalid configuration to be generated.</p>
 
-<h2>
-<a name="versioning" class="anchor" href="#versioning"><span class="octicon octicon-link"></span></a>Versioning</h2>
+<h2><a name='versioning' class='anchor' href='#versioning'></a> Versioning</h2>
 
 <p>Before an in-depth discussion of the Rez tools, we need to describe how the system deals with version numbers. Packages in the Rez system are versioned using the format:</p>
 
@@ -244,14 +210,16 @@ response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)
 <li>foo-1.2.3.800.7</li>
 <li>foo-1.2.3.a</li>
 <li>foo-1.b.1</li>
-</ul><p>When requesting packages in Rez, you do not need to ask for a specific version of a package - you can instead ask for an inexact version. For example, let’s assume that the single package foo-5.6.1 exists on disk, and there are no other foo packages. The following package descriptions will all resolve to foo-5.6.1:</p>
+</ul>
 
-<table>
-<thead><tr>
+<p>When requesting packages in Rez, you do not need to ask for a specific version of a package - you can instead ask for an inexact version. For example, let’s assume that the single package foo-5.6.1 exists on disk, and there are no other foo packages. The following package descriptions will all resolve to foo-5.6.1:</p>
+
+<table><thead>
+<tr>
 <th>Package Request</th>
 <th>Meaning</th>
-</tr></thead>
-<tbody>
+</tr>
+</thead><tbody>
 <tr>
 <td>foo</td>
 <td>any version of foo</td>
@@ -280,15 +248,15 @@ response: Not possible: conflict (bah-2.5.0 &lt;--!--&gt; bah-2.6.0)
 <td>foo-0+&lt;4.5</td>
 <td>any foo version less than foo-4.5</td>
 </tr>
-</tbody>
-</table><p>It is also possible to describe disparate regions in an inexact version, although in practice it would be rare to use this description directly (it exists because it is used internally by the resolution algorithm):</p>
+</tbody></table>
+
+<p>It is also possible to describe disparate regions in an inexact version, although in practice it would be rare to use this description directly (it exists because it is used internally by the resolution algorithm):</p>
 
 <pre><code>foo-5.6|6.3 (“foo- 5.6 OR 6.3”)
 foo-3|5+ (“foo- 3 OR (5 or greater) ”)
 </code></pre>
 
-<h2>
-<a name="rez-config" class="anchor" href="#rez-config"><span class="octicon octicon-link"></span></a>rez-config</h2>
+<h2><a name='rez-config' class='anchor' href='#rez-config'></a> rez-config</h2>
 
 <p>rez-config is the largest and most important tool in the suite. It contains the algorithm which resolves packages into a valid package configuration (details of this algorithm are beyond the scope of this document).</p>
 
@@ -336,7 +304,7 @@ lin64
 
 <p>You can use any kind of inexact versioning to describe the packages that you want. Bear in mind you may have to escape with single quotes (‘’) due to bash. Here’s an example where I want an environment with the latest version of delight, but less than 9.1:</p>
 
-<pre><code>&gt; rez-config --print-packages 'delight-0+&lt;9.1'
+<pre><code>&gt; rez-config --print-packages &#39;delight-0+&lt;9.1&#39;
 successful configuration found after 0 failed attempts.
 delight-9.0.58
 lin64
@@ -356,7 +324,9 @@ lin64
 
 <p>rez-config, when run in ‘mode=latest’, will give you back the latest possible combination of packages that you asked for. This may not necessarily be the very latest version of every package. In this example, houdini-11.0.477 is not compatible with boost-1.33.1, so that combination was not chosen. This diagram illustrates the resolution process that took place:</p>
 
-<p>IMG</p>
+<div align="center">
+<img style="width:800px; height:327px;" src="images/resolve_algo.jpg" alt="Resolve example">
+</div>
 
 <p>Here, the stack of houdini versions illustrate the packages that rez-config found on disk. The houdini versions in blue require boost-1.37.0, and those in yellow require boost-1.33.1. Rez-config can’t know this ahead of time, so it starts with the latest version of houdini and attempts to resolve that configuration. If that fails, it moves down to the next latest version, and tries again1. It will do this until a match is found, or all versions of houdini are exhausted. You can see that in this case, it took three attempts before a valid configuration was found. If there are multiple inexact packages in a request, then rez-config will perform this kind of search recursively.</p>
 
@@ -366,8 +336,7 @@ lin64
 
 <p>We’ll leave rez-config for now, and take a closer look at the things it manages: packages.</p>
 
-<h2>
-<a name="packages" class="anchor" href="#packages"><span class="octicon octicon-link"></span></a>Packages</h2>
+<h2><a name='packages' class='anchor' href='#packages'></a> Packages</h2>
 
 <p>As described earlier, a package is a particular version of software, or a collection of data or configuration information, that resides in a single location on disk. Packages contain a metafile which describes, among other things, the packages that that package depends on.</p>
 
@@ -425,24 +394,23 @@ commands:
 
 <p>commands - This is a list of bash commands. If this package becomes part of a resolved configuration, then these commands will be executed in order to create the resolved environment (we’ll get to this process later). A special variable - !ROOT! - is expanded out to the install location of the package at run-time. In this case, it would expand to /rez/packages/foo/1.0.0.</p>
 
-<p>So, this package requires packages boost-1.37.0 and openexr-1.6.1, and if pulled into an environment, it will add it’s ‘bin’ directory to $PATH in order to expose its executable binary, ‘foo’. Appending to $PATH is a typical example of the kinds of commands you will see in package.yamls. Others include:
-appending $LD_LIBRARY_PATH, for shared libraries;
-appending $HOUDINI_DSO_PATH, for houdini plugins;
+<p>So, this package requires packages boost-1.37.0 and openexr-1.6.1, and if pulled into an environment, it will add it’s ‘bin’ directory to $PATH in order to expose its executable binary, ‘foo’. Appending to $PATH is a typical example of the kinds of commands you will see in package.yamls. Others include:<br>
+appending $LD_LIBRARY_PATH, for shared libraries;<br>
+appending $HOUDINI_DSO_PATH, for houdini plugins;<br>
 appending $CMAKE_MODULE_PATH, to allow other packages to build against us (more on this later).</p>
 
 <p>In order to expose third-party software to the Rez system, the above directory structure needs to be setup, and the package.yaml written. Typically, an ‘ext’ symlink is added which points at the installation, rather than moving the installation into the packages directory. For internal software, the package.yaml and relevant directory structure is created for you, as part of the release process, and the project itself is installed in the same place, as per our ‘foo’ example above.</p>
 
 <p>We’ve just described the anatomy of a simple package, and where to find them. There are more to packages, but we’ll talk about package variants later.</p>
 
-<h2>
-<a name="rez-env" class="anchor" href="#rez-env"><span class="octicon octicon-link"></span></a>rez-env</h2>
+<h2><a name='rez-env' class='anchor' href='#rez-env'></a> rez-env</h2>
 
 <p>All this talk of packages and rez-config is all well and good, but let’s actually do something already. Specifically, let’s use rez-env to create environments on the fly.</p>
 
 <p>For just one moment, let’s go back to rez-config. There’s another flag I didn’t touch on. ‘--print-env’ will print a sequence of bash commands that will, if executed, create the environment containing the resolved configuration you asked for. For example, here’s the output I get when asking for an environment with the latest rv:</p>
 
 <pre><code>&gt; rez-config --print-env rv
-export REZ_RESOLVE='rv-3.8.6 lin64'
+export REZ_RESOLVE=&#39;rv-3.8.6 lin64&#39;
 export REZ_LIN64_ROOT=/rez/software/packages/lin64
 export REZ_RESOLVE_MODE=latest
 export REZ_RV_VERSION=3.8.6
@@ -450,11 +418,11 @@ export REZ_FAILED_ATTEMPTS=0
 export PYTHONPATH=/rez/ext/python/lin64/2.5/pyyaml/3.9.0:/rez/ext/python/lin64/2.5/pydot/1.0.2:/rez/ext/python/lin64/2.5/pyparsing/1.5.1
 export REZ_RV_ROOT=/rez/packages/rv/3.8.6/lin64
 export REZ_LIN64_VERSION=
-export CMAKE_MODULE_PATH='/rez/packages/rez/1.40/cmake'';'/rez/packages/lin64/cmake
+export CMAKE_MODULE_PATH=&#39;/rez/packages/rez/1.40/cmake&#39;&#39;;&#39;/rez/packages/lin64/cmake
 export PATH=/bin:/usr/bin:/rez/packages/rez/1.40/bin:/rez/packages/rv/3.8.6/lin64/ext/bin
 export RV_LICENCE_SERVER=rvlic01.int
 export REZ_PLATFORM=lin64
-export REZ_REQUEST='rv'
+export REZ_REQUEST=&#39;rv&#39;
 </code></pre>
 
 <p>All the environment variables beginning with ‘REZ_’ are Rez system variables, and should not be touched. The environment contains metadata - that is, data describing how this environment was generated, and what the result was (eg REZ_REQUEST, REZ_RESOLVE). All other variables have been created from package.yaml command lists.</p>
@@ -488,21 +456,23 @@ context file:
 
 <p>If you are ever curious about exactly how the current environment was resolved - and why exactly did I end up with Qt-4.2.0 rather than Qt-4.5.3? - the rez-context-image tool is very useful. Here is an example, showing how the environment was resolved for “latest vacuumHoudini”:</p>
 
-<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/full_resolve.jpg" alt="A typical resolve" title="A typical resolve"></p>
+<p><br></p>
+
+<div align="center">
+<img style="width:847px; height:722px;" src="images/full_resolve.jpg" alt="Typical resolve">
+</div>
 
 <p>Nodes in the ‘request’ box are the packages that were requested, and green nodes are the packages that were resolved for the current environment. The arrows show relationships between packages, and there are three different types:</p>
 
-<ol>
-<li>
-<strong>needs</strong> - This shows a standard package dependency.</li>
-<li>
-<strong>resolve</strong> - This shows that rez-config searched for this version of the package on the file system. Look toward the left of this diagram - “boost” is an inexact package request, and in this case rez-config had to search through REZ_PACKAGES_PATH to find a suitable version of boost. This is different to when package requests or requirements are specifically versioned - a ‘resolve’ only occurs if rez-config had to search for a package, within an inexact range.</li>
-<li>
-<strong>reduce</strong> - This happens when a package is added to the configuration, but either a subset or superset of that package is already in the configuration. This either has no effect, or ‘reduces’ the existing package request to a more specific request. In this example, “python” was in the configuration, and as a result of “h5py-1.2.1” being added, it’s requirement “python-2.5” was then added, which “reduced” the existing “python” package to the more specific, and in this case exact package, “python-2.5”.</li>
-</ol><p>These “resolve graphs” can become extremely large. Rez-context-image supports a “--package” flag which can be used to reduce the graph down, so that it only contains packages that are directly or indirectly dependent on the specified package. In the example above, we could have specified “--package=numpy” to see only that part of the graph branching upwards from the numpy package.</p>
+<p>needs - This shows a standard package dependency.</p>
 
-<h2>
-<a name="patching" class="anchor" href="#patching"><span class="octicon octicon-link"></span></a>Patching</h2>
+<p>resolve - This shows that rez-config searched for this version of the package on the file system. Look toward the left of this diagram - “boost” is an inexact package request, and in this case rez-config had to search through REZ_PACKAGES_PATH to find a suitable version of boost. This is different to when package requests or requirements are specifically versioned - a ‘resolve’ only occurs if rez-config had to search for a package, within an inexact range.</p>
+
+<p>reduce - This happens when a package is added to the configuration, but either a subset or superset of that package is already in the configuration. This either has no effect, or ‘reduces’ the existing package request to a more specific request. In this example, “python” was in the configuration, and as a result of “h5py-1.2.1” being added, it’s requirement “python-2.5” was then added, which “reduced” the existing “python” package to the more specific, and in this case exact package, “python-2.5”.</p>
+
+<p>These “resolve graphs” can become extremely large. Rez-context-image supports a “--package” flag which can be used to reduce the graph down, so that it only contains packages that are directly or indirectly dependent on the specified package. In the example above, we could have specified “--package=numpy” to see only that part of the graph branching upwards from the numpy package.</p>
+
+<h2><a name='patching' class='anchor' href='#patching'></a> Patching</h2>
 
 <p>Sometimes you end up in a situation where you want to add some more packages to the current environment, or change the version of some package(s), or even delete a package. This is called patching in Rez. The example illustrates:</p>
 
@@ -559,8 +529,7 @@ context file:
 <pre><code>&gt; [~/workspace]$ rez-env --add_loose ^hdfview
 </code></pre>
 
-<h2>
-<a name="piping-and-rez-run" class="anchor" href="#piping-and-rez-run"><span class="octicon octicon-link"></span></a>Piping and rez-run</h2>
+<h2><a name='piping-and-rez-run' class='anchor' href='#piping-and-rez-run'></a> Piping and rez-run</h2>
 
 <p>There are many occasions, especially in parts of a pipeline, where you want to run a command in a specific environment non-interactively. For example, there may be a script that gets run somewhere which needs to start another script in a particular production environment - perhaps in order to render a turntable, or publish an asset. For whatever reason, you might not already be in the environment that you need.</p>
 
@@ -597,8 +566,7 @@ context file:
 # same as running “rez-env rv”, then “rv”
 </code></pre>
 
-<h2>
-<a name="failed-resolves" class="anchor" href="#failed-resolves"><span class="octicon octicon-link"></span></a>Failed Resolves</h2>
+<h2><a name='failed-resolves' class='anchor' href='#failed-resolves'></a> Failed Resolves</h2>
 
 <p>Recall that rez-config is a recursive algorithm, which searches for a combination of packages that do not contain version clashes. Sometimes, several package configurations are attempted, but are found to fail (ie, they contain version clashes), before the successful combination of packages is found. Recall the example in the previous rez-config chapter, where the request for houdini and boost-1.33.1 causes several such failures before the resolve was successful. So, what happens when no such successful combination exists? Or, what if a large number of failures occur, and you want to find out what’s going on?</p>
 
@@ -618,12 +586,13 @@ python-2.5          /.../software/packages/python/2.5/lin64
 number of failed attempts: 0
 </code></pre>
 
-<table><tr>
-<td>
-<img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/small_resolve.jpg" alt="Example resolve">
-</td>
-<td></td>
-</tr></table><p>From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:</p>
+<p><br></p>
+
+<div align="center">
+<img style="width:256px; height:461px;" src="images/small_resolve.jpg" alt="Example resolve">
+</div>
+
+<p>From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:</p>
 
 <pre><code>]$ rez-env nkDefocus python-2.6
 conflict 0: lin64 nkDefocus-0.0.0 python-2.6 nuke-6.2.4
@@ -632,15 +601,15 @@ conflict 2: lin64 nkDefocus-0.0.0 python-2.6 nuke-6.2.2
 conflict 3: lin64 nkDefocus-0.0.0 python-2.6 nuke-6.2.1.b.3
 conflict 4: lin64 nkDefocus-0.0.0 python-2.6 nuke-6.2.1
 The configuration could not be resolved:
-('python', '2.6')
-('nkDefocus', '')
-('lin64', '')
+(&#39;python&#39;, &#39;2.6&#39;)
+(&#39;nkDefocus&#39;, &#39;&#39;)
+(&#39;lin64&#39;, &#39;&#39;)
 The failed configuration attempts were:
-config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.4(b)): PkgConflictError: ["('python', '2.5') &lt;--!--&gt; ('python', '2.6')"]
-config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.3(b)): PkgConflictError: ["('python', '2.5') &lt;--!--&gt; ('python', '2.6')"]
-config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.2(b)): PkgConflictError: ["('python', '2.5') &lt;--!--&gt; ('python', '2.6')"]
-config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1.b.3(b)): PkgConflictError: ["('python', '2.5') &lt;--!--&gt; ('python', '2.6')"]
-config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictError: ["('python', '2.5') &lt;--!--&gt; ('python', '2.6')"]
+config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.4(b)): PkgConflictError: [&quot;(&#39;python&#39;, &#39;2.5&#39;) &lt;--!--&gt; (&#39;python&#39;, &#39;2.6&#39;)&quot;]
+config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.3(b)): PkgConflictError: [&quot;(&#39;python&#39;, &#39;2.5&#39;) &lt;--!--&gt; (&#39;python&#39;, &#39;2.6&#39;)&quot;]
+config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.2(b)): PkgConflictError: [&quot;(&#39;python&#39;, &#39;2.5&#39;) &lt;--!--&gt; (&#39;python&#39;, &#39;2.6&#39;)&quot;]
+config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1.b.3(b)): PkgConflictError: [&quot;(&#39;python&#39;, &#39;2.5&#39;) &lt;--!--&gt; (&#39;python&#39;, &#39;2.6&#39;)&quot;]
+config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictError: [&quot;(&#39;python&#39;, &#39;2.5&#39;) &lt;--!--&gt; (&#39;python&#39;, &#39;2.6&#39;)&quot;]
 </code></pre>
 
 <p>Clearly this hasn’t worked. Rez-env has printed a list showing the conflicts that occurred, but it’s difficult to get a clear picture of what happened from reading this text.</p>
@@ -650,7 +619,11 @@ config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictEr
 <pre><code>$] rez-config --max-fails=0 --dot-file=fail.jpg nkDefocus python-2.6
 </code></pre>
 
-<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/failed_resolve.jpg" alt="A failed resolve" title="A failed resolve"></p>
+<p><br></p>
+
+<div align="center">
+<img style="width:248px; height:392px;" src="images/failed_resolve.jpg" alt="Failed resolve">
+</div>
 
 <p>Here we can see what has happened - python-2.5 is required by nuke-6.2.4, which rez-config resolved (ie found on the file system) from a request for nuke-6.2, which was required by nkDefocus-0.0.0, which was resolved from the request for nkDefocus... which clashes with the request for python-2.6. The conflict is shown as a bold red arrow labelled “CONFLICT” (in case you missed it).</p>
 
@@ -660,10 +633,13 @@ config: (lin64(r) nkDefocus-0.0.0(r) python-2.6(r) nuke-6.2.1(b)): PkgConflictEr
 $] rez-dot --conflict-only fail.dot
 </code></pre>
 
-<p><img src="https://raw.github.com/nerdvegas/rez/gh-pages/images/failed_resolve_conflict_only.jpg" alt="A failed resolve" title="A failed resolve"></p>
+<p><br></p>
 
-<h2>
-<a name="package-variants" class="anchor" href="#package-variants"><span class="octicon octicon-link"></span></a>Package Variants</h2>
+<div align="center">
+<img style="width:288px; height:392px;" src="images/failed_resolve_conflict_only.jpg" alt="Failed resolve">
+</div>
+
+<h2><a name='package-variants' class='anchor' href='#package-variants'></a> Package Variants</h2>
 
 <p>Variants are a powerful mechanism in package configuration, and they allow for a flexible development environment. Essentially, a ‘variant’ is a particular flavour of a package, that has one or more dependencies that are different to other variants in the same package.</p>
 
@@ -702,8 +678,7 @@ requires:
 
 <p>You may be wondering how to support variants if, say, houdini-11.0.430’s API has changed from houdini-11.1.466. Clearly the same code can’t be compiled for both variants in this case, since the API change might cause fooHouPlugin to fail to compile for one of the variants. The next section (rez-build) explains how to deal with this case.</p>
 
-<h2>
-<a name="rez-build" class="anchor" href="#rez-build"><span class="octicon octicon-link"></span></a>rez-build</h2>
+<h2><a name='rez-build' class='anchor' href='#rez-build'></a> rez-build</h2>
 
 <p>Rez-build is the tool which bridges the gap between run-time environments and the build system. It uses the package.yaml of the project being built, in order to drive a build matrix over the project. One build will take place for each variant in your project, or just the one if there are no variants. Rez-build creates a rez environment for each build, containing all the correct packages, and then runs cmake/make inside this shell.</p>
 
@@ -714,8 +689,7 @@ requires:
 
 <p>All arguments are optional, but whether or not the arguments to make are supplied, changes the way that rez-build behaves.</p>
 
-<h3>
-<a name="case-1-not-invoking-make" class="anchor" href="#case-1-not-invoking-make"><span class="octicon octicon-link"></span></a>Case 1: Not invoking make</h3>
+<h3><a name='case-1-not-invoking-make' class='anchor' href='#case-1-not-invoking-make'></a> Case 1: Not invoking make</h3>
 
 <p>Let’s assume that we’re in the same directory as a project we wish to build (we’ll use the previous example, fooHouPlugin). The project’s package.yaml is in the same directory, as is its CMakeLists.txt file, which is a cmake build file. Consider the following command:</p>
 
@@ -725,22 +699,22 @@ requires:
 <p>Here, we have supplied no rez-build args, and no rez-cmake args, but we have also specifically missed out the second double hyphen (--). By doing this we are effectively saying, we do not want to actually build the project - we do not want to invoke make. So, what what are we doing then? Here’s rez-build’s output:</p>
 
 <pre><code>---------------------------------------------------------
-rez-build: building for variant 'houdini-11.0.430'
+rez-build: building for variant &#39;houdini-11.0.430&#39;
 ---------------------------------------------------------
 
 rez-build: invoking rez-config:
 requested packages: ilmbase-1.0.2 houdini-11.0.430
 package search paths:/users/xxx/packages:/rez/packages
-Generated /users/xxx/fooHouPlugin/build/0/build-env.sh, invoke to run cmake for this project's variant:(houdini-11.0.430)
+Generated /users/xxx/fooHouPlugin/build/0/build-env.sh, invoke to run cmake for this project&#39;s variant:(houdini-11.0.430)
 
 ---------------------------------------------------------
-rez-build: building for variant 'houdini-11.1.466'
+rez-build: building for variant &#39;houdini-11.1.466&#39;
 ---------------------------------------------------------
 
 rez-build: invoking rez-config:
 requested packages: ilmbase-1.0.2 houdini-11.1.466
 package search paths: /users/xxx/packages:/rez/packages
-Generated /users/xxx/fooHouPlugin/build/1/build-env.sh, invoke to run cmake for this project's variant:(houdini-11.1.466)
+Generated /users/xxx/fooHouPlugin/build/1/build-env.sh, invoke to run cmake for this project&#39;s variant:(houdini-11.1.466)
 </code></pre>
 
 <p>In this case rez-build has created two subdirectories, ./build/0/ and ./build/1/, one for each of the package’s variants. These paths are always numbered 0..N, and the order matches the order of variants found in the package.yaml (ie, ./build/0 in this case refers to the ‘houdini-11.0.430’ variant). Under the build subdirectory, there are also symlinks pointing at the numbered directories, and these links contain the names of the packages in each variant, in case you’re unsure as to which directory matches which variant.</p>
@@ -750,20 +724,21 @@ Generated /users/xxx/fooHouPlugin/build/1/build-env.sh, invoke to run cmake for 
 <ol>
 <li>You will be launched into a sub-shell containing all the packages this variant is dependent on;</li>
 <li>cmake will be run automatically, which will generate your Makefile(s).</li>
-</ol><p>You will now be in an environment very similar to a rez-env environment. You will notice the arrow bracket visual cue as usual (&gt;), and again you can use the linux builtin command exit to exit this build environment.</p>
+</ol>
+
+<p>You will now be in an environment very similar to a rez-env environment. You will notice the arrow bracket visual cue as usual (&gt;), and again you can use the linux builtin command exit to exit this build environment.</p>
 
 <p>Once in this environment, you can make your project as you would for any normal make-based project. As long as your project doesn’t change configuration, you can continue to alter code, compile and recompile. However doing things which change the project configuration will mean you’ll have to exit out and re-run rez-build. Such actions include:</p>
 
-<p>Adding new source files to the project;
-Changing the dependencies of the project in the package.yaml;
-Changing the variants in the package.yaml;
-Changing the build type (eg Debug, Release);
+<p>Adding new source files to the project;<br>
+Changing the dependencies of the project in the package.yaml;<br>
+Changing the variants in the package.yaml;<br>
+Changing the build type (eg Debug, Release);<br>
 Changing how source files are built - for example changing cflags in a C++ project.</p>
 
 <p>Generally, changes to your package.yaml or CMakeLists.txt will necessitate re-running of rez-build.</p>
 
-<h3>
-<a name="case-2-invoking-make" class="anchor" href="#case-2-invoking-make"><span class="octicon octicon-link"></span></a>Case 2: Invoking make</h3>
+<h3><a name='case-2-invoking-make' class='anchor' href='#case-2-invoking-make'></a> Case 2: Invoking make</h3>
 
 <p>Let’s say that we don’t have a need to repeatedly alter and rebuild a project, and that we just want to build the whole thing at once, from a single command. We do this by including the make-part of rez-build’s args list:</p>
 
@@ -776,8 +751,9 @@ Changing how source files are built - for example changing cflags in a C++ proje
 <li>Launches the appropriate environment, based on that variant’s dependent packages;</li>
 <li>Runs cmake in order to create the relevant Makefiles;</li>
 <li>Runs make, in order to build the variant.</li>
-</ol><h3>
-<a name="cmake-arguments" class="anchor" href="#cmake-arguments"><span class="octicon octicon-link"></span></a>Cmake Arguments</h3>
+</ol>
+
+<h3><a name='cmake-arguments' class='anchor' href='#cmake-arguments'></a> Cmake Arguments</h3>
 
 <p>As mentioned, the second set of arguments are passed to rez-cmake, a thin cmake wrapper script. Please note that rez-cmake is currently fairly limited in the control it gives you - you should consider updating it to suit your studio’s needs.</p>
 
@@ -785,17 +761,15 @@ Changing how source files are built - for example changing cflags in a C++ proje
 
 <p>It could be argued that rez-cmake should be removed completely, and the arguments here be passed directly to cmake, for more control. This is left as an exercise for the user.</p>
 
-<h3>
-<a name="make-arguments" class="anchor" href="#make-arguments"><span class="octicon octicon-link"></span></a>Make Arguments</h3>
+<h3><a name='make-arguments' class='anchor' href='#make-arguments'></a> Make Arguments</h3>
 
 <p>The third set of arguments to rez-build are passed along to make. Since Cmake is actually generating the make files, you should consult its documentation for further information on the make arguments that it makes available. Suffice to say, here are some useful arguments to know:</p>
 
-<p>VERBOSE=1: This will print all the build commands (compiling, linking etc) to standard out.
-install: We’ve already described this common make argument, which will, for us, locally install our package, typically to $HOME/packages//.
+<p>VERBOSE=1: This will print all the build commands (compiling, linking etc) to standard out.<br>
+install: We’ve already described this common make argument, which will, for us, locally install our package, typically to $HOME/packages/<package-name>/<package-version>.<br>
 -jN: Utilises N threads to speed up the build process.</p>
 
-<h3>
-<a name="local-package-installs" class="anchor" href="#local-package-installs"><span class="octicon octicon-link"></span></a>Local Package Installs</h3>
+<h3><a name='local-package-installs' class='anchor' href='#local-package-installs'></a> Local Package Installs</h3>
 
 <p>Ok, so far so good. I can build a project and all its different variants with a single command, and I don’t have to worry about setting up the correct build environment, because rez-build does this for me. But what if I want to test my project? Recall the REZ_PACKAGES_PATH environment variable, whos typical value looks like this:</p>
 
@@ -837,8 +811,7 @@ context file:
 
 <p>If you are working on several projects locally, and they have interdependencies with one another, rez-build will pick up local packages when building variants, just as rez-env does when creating a shell. If you want to cease using a local version of a particular package, you can simply delete the package from your local packages directory. Alternatively, if you want to cease picking up local versions of any package at all, you could remove your local packages directory from REZ_PACKAGES_PATH manually.</p>
 
-<h3>
-<a name="cmake-integration" class="anchor" href="#cmake-integration"><span class="octicon octicon-link"></span></a>Cmake Integration</h3>
+<h3><a name='cmake-integration' class='anchor' href='#cmake-integration'></a> Cmake Integration</h3>
 
 <p>In order for rez-build to drive your project’s build matrix from the package.yaml, your CMake build file must use some cmake functions, and include some cmake modules, which are released as part of rez-config. Please note that a full description of cmake and its language is beyond the scope of this document - to find out more on how to use cmake, take a look at - <a href="http://www.cmake.org/cmake/help/cmake-2-8-docs.html">http://www.cmake.org/cmake/help/cmake-2-8-docs.html</a></p>
 
@@ -875,9 +848,9 @@ set(boost_COMPONENTS program_options)
 
 <p>Here is an example of some variables being set, which control aspects of a package which we are building against. Specifically, we are specifying that we want to statically link against boost, and that we want to use the boost program_options library.</p>
 
-<p>Every package can have different input variables, or even none at all. What these variables are, and what they do, is dictated by the package itself. Many packages are installed with their own cmake module, which is typically installed under a ‘cmake’ subdirectory, with the file name .cmake. Typically, packages with cmake modules are compiled libraries - a package containing only python scripts for example, would not typically provide its own cmake module. </p>
+<p>Every package can have different input variables, or even none at all. What these variables are, and what they do, is dictated by the package itself. Many packages are installed with their own cmake module, which is typically installed under a ‘cmake’ subdirectory, with the file name <package_name>.cmake. Typically, packages with cmake modules are compiled libraries - a package containing only python scripts for example, would not typically provide its own cmake module. </p>
 
-<p>A package providing its own cmake module will expose this module to cmake by adding the path to $CMAKE_MODULE_PATH, via a command in its package.yaml. If you are using a package which provides its own cmake module, you should refer to the module itself for any documentation describing 
+<p>A package providing its own cmake module will expose this module to cmake by adding the path to $CMAKE_MODULE_PATH, via a command in its package.yaml. If you are using a package which provides its own cmake module, you should refer to the module itself for any documentation describing <br>
 what variables are available to set.</p>
 
 <p>Please note that setting input variables such as these MUST happen before calling the next function, ‘rez_find_packages’.</p>
@@ -895,9 +868,11 @@ what variables are available to set.</p>
 <p>‘rez_find_packages’ iterates over a list of packages, and if a list is not supplied, it iterates over all packages in the current build variant. For each package, it does the following:</p>
 
 <ol>
-<li>It includes that package’s cmake module, if there is one (ie, the package’s .cmake file, found somewhere in $CMAKE_MODULE_PATH);</li>
+<li>It includes that package’s cmake module, if there is one (ie, the package’s <package_name>.cmake file, found somewhere in $CMAKE_MODULE_PATH);</li>
 <li>If a cmake file was found, they are combined into four output variables - $PREFIX_INCLUDE_DIRS, $PREFIX_LIBRARY_DIRS, $PREFIX_LIBRARIES and $PREFIX_DEFINITIONS. These variables represent the compile flags and link flags that we need in order to build a C++ project against these packages. In the current example, the output variables would be ‘pkgs_INCLUDE_DIRS’ etc.</li>
-</ol><p>After the packages have been iterated over, and if AUTO is set, then the function also automatically sets up include directories, library directories and C++ definitions for your project.</p>
+</ol>
+
+<p>After the packages have been iterated over, and if AUTO is set, then the function also automatically sets up include directories, library directories and C++ definitions for your project.</p>
 
 <p>You’ve probably noticed that this section seems pretty C++-centric, and you’d be right. However, in theory there is no reason why a non-C++ package could not provide its own cmake module, providing its own information and control over how to use the package. ‘rez_find_packages’ would still attempt to create the C++ output variables that have just been mentioned, but it doesn’t matter if these variables are empty, and it would still load the cmake modules for each package.</p>
 
@@ -906,10 +881,10 @@ what variables are available to set.</p>
 <pre><code>add_definitions( -DBOOST_VER=${BOOST_VERSION} -DBOOST_MAJ_VER=${BOOST_MAJOR_VERSION} )
 </code></pre>
 
-<p>This line of code will pass some definitions to the C++ compiler, in this case the version of boost, and just the major boost version. It illustrates the fact that rez-build automatically exposes package dependency version information to you via cmake variables. In this example, the boost-related variables that have been created are:
-BOOST_VERSION (eg: 1.37.0)
-BOOST_MAJOR_VERSION (eg: 1)
-BOOST_MINOR_VERSION (eg: 37)
+<p>This line of code will pass some definitions to the C++ compiler, in this case the version of boost, and just the major boost version. It illustrates the fact that rez-build automatically exposes package dependency version information to you via cmake variables. In this example, the boost-related variables that have been created are:<br>
+BOOST_VERSION (eg: 1.37.0)<br>
+BOOST_MAJOR_VERSION (eg: 1)<br>
+BOOST_MINOR_VERSION (eg: 37)<br>
 BOOST_PATCH_VERSION (eg: 0)</p>
 
 <p>These variables are created for every package that the current variant depends on. If packages have less than three version number components, the extra values will be set to zero. This functionality becomes important when supporting variants that may have a differing API. By passing version information through to your compiler’s preprocessor, you can write #ifdefs to change your code, depending on which variant is being built.</p>
@@ -919,28 +894,23 @@ BOOST_PATCH_VERSION (eg: 0)</p>
 
 <p>‘target_link_libraries’ is a native cmake command, but this line of code is worth a mention because it illustrates use of one of rez_find_packages’ output variables, in this case pkgs_LIBRARIES.</p>
 
-<h3>
-<a name="cmake-modules" class="anchor" href="#cmake-modules"><span class="octicon octicon-link"></span></a>CMake Modules</h3>
+<h3><a name='cmake-modules' class='anchor' href='#cmake-modules'></a> CMake Modules</h3>
 
 <p>Rez supplies several cmake modules, one of which we’ve already covered (rez_find_packages). Following is a list of other available modules. For more documentation, see the comments in the source files themselves (as mentioned - /rez/packages/rez/${VERSION}/cmake).</p>
 
-<h4>
-<a name="rez_install_cmake" class="anchor" href="#rez_install_cmake"><span class="octicon octicon-link"></span></a>rez_install_cmake</h4>
+<h4><a name='rez_install_cmake' class='anchor' href='#rez_install_cmake'></a> rez_install_cmake</h4>
 
 <p>Builds and installs a cmake module for your project. This is the cmake file that the rez_find_packages macro will find, when compiling and linking other packages against yours. You typically use this when building a C++ library which other libraries or binaries will link against. See the translate_lib example project in the rez install for an example of this.</p>
 
-<h4>
-<a name="rez_install_files" class="anchor" href="#rez_install_files"><span class="octicon octicon-link"></span></a>rez_install_files</h4>
+<h4><a name='rez_install_files' class='anchor' href='#rez_install_files'></a> rez_install_files</h4>
 
 <p>Installs data files. There are native cmake functions which can do this (specifically, the install command in modes DIRECTORY and FILES), but they both have issues - DIRECTORY copies a directory wholesale, and requires exclusion patterns to skip svn metadata etc, and FILES loses subdirectory structure on installation. rez_install_files suffers neither of these problems. You can also install files and set executable permissions on them with the EXECUTABLE keyword.</p>
 
-<h4>
-<a name="rez_install_python" class="anchor" href="#rez_install_python"><span class="octicon octicon-link"></span></a>rez_install_python</h4>
+<h4><a name='rez_install_python' class='anchor' href='#rez_install_python'></a> rez_install_python</h4>
 
 <p>Installs python source files. Once upon a time this macro used to build the associated pyc files and install them also, however python’s management (or lack thereof) of bytecode meant that this feature had to be removed. Regardless, this macro will check to see that a ‘python’ package appears in the current package list, and will fail if this is not the case. This macro should probably be updated so that pyc files are compiled for the purposes of checking for errors, but not installed. This is left as an exercise for the reader.</p>
 
-<h3>
-<a name="build-time-dependencies" class="anchor" href="#build-time-dependencies"><span class="octicon octicon-link"></span></a>Build-time Dependencies</h3>
+<h3><a name='build-time-dependencies' class='anchor' href='#build-time-dependencies'></a> Build-time Dependencies</h3>
 
 <p>Sometimes it is desirable for a package to depend on another package only for the purposes of building its code, or perhaps generating documentation. Let’s use documentation as an example - a C++ project may need to builds its docs using doxygen, but once the docs are generated, doxygen is no longer needed.</p>
 
@@ -961,12 +931,11 @@ build_requires:
 
 <p>Another typical use of build requirements is for static libraries. If two separate libraries or applications A and B, link statically to two different versions of the same third library C, then this will often not cause a problem at runtime... A and B can safely be used within the same resolved environment. Rez allows this case - in both A and B’s package.yaml files, you would list the C package as a build-only requirement.</p>
 
-<h3>
-<a name="building-custom-targets" class="anchor" href="#building-custom-targets"><span class="octicon octicon-link"></span></a>Building Custom Targets</h3>
+<h3><a name='building-custom-targets' class='anchor' href='#building-custom-targets'></a> Building Custom Targets</h3>
 
 <p>You will probably find yourself needing to build source code or assets not natively supported by Rez. Examples include - shader source files; Houdini OTL files, and so on.</p>
 
-<p>Recall that many packages provide their own cmake source file, named .cmake. This file is usually kept in a cmake/ subdirectory of the package (this is just a convention), and is added to cmake’s search path in the package.yaml like so:</p>
+<p>Recall that many packages provide their own cmake source file, named <package_name>.cmake. This file is usually kept in a cmake/ subdirectory of the package (this is just a convention), and is added to cmake’s search path in the package.yaml like so:</p>
 
 <pre><code>commands:
 - export CMAKE_MODULE_PATH=$CMAKE_MODULE_PATH:!ROOT!/cmake
@@ -976,8 +945,7 @@ build_requires:
 
 <p>Please refer to the example build tools package in the rez distribution (“buildTools_toupper”) for more information. Note that the cmake file contains a block comment at the top, listing the available macro, usage information and a description of all the arguments. You should do the same in your own build tool cmake files.</p>
 
-<h2>
-<a name="timestamping" class="anchor" href="#timestamping"><span class="octicon octicon-link"></span></a>Timestamping</h2>
+<h2><a name='timestamping' class='anchor' href='#timestamping'></a> Timestamping</h2>
 
 <p>When a package is built and installed with rez-build, it has a timestamp associated with it. All of the rez tools which resolve environments - rez-config, rez-build, and rez-release (which we’ve yet to cover) allow the user to “roll back time”, by setting the “current” timestamp to a time in the past. When this is done, rez ignores packages with a newer timestamp than the “current” timestamp. Using this feature, you can replicate a resolve that would have happened in the past.</p>
 
@@ -1011,8 +979,7 @@ eek-5.4.3
 
 <p>Timestamping is also important because it is used by rez-build every time you build a package. If you have a package with multiple variants, those variants are built one after the other (they can’t be built all at the same time). If a new package was released during the build process, one variant might get the new package version, and another might not, even though they’re both requesting the same thing. To avoid this inconsistency, rez-build takes note of the time before it starts building any variants, and then forces all variant environment resolutions onto this timestamp, thus making sure that they all see the same existing packages, and not any very new ones.</p>
 
-<h2>
-<a name="anti-packages-and-the-conflict-operator" class="anchor" href="#anti-packages-and-the-conflict-operator"><span class="octicon octicon-link"></span></a>Anti-Packages and the Conflict Operator</h2>
+<h2><a name='anti-packages-and-the-conflict-operator' class='anchor' href='#anti-packages-and-the-conflict-operator'></a> Anti-Packages and the Conflict Operator</h2>
 
 <p>When using rez-config and supporting tools, you generally speak in terms of what you want - eg “rez-env houdini rv”. However, it is sometimes necessary to speak in terms of what you don’t want, and rez-config lets you do this too.</p>
 
@@ -1026,13 +993,13 @@ eek-5.4.3
 
 <p>A package request combined with an anti-package request will cause a conflict only if the package request falls entirely inside the anti-package version range - otherwise, the result is the difference of the two. To put this in less confusing terms, consider these examples:</p>
 
-<table>
-<thead><tr>
+<table><thead>
+<tr>
 <th>Package</th>
 <th>Anti-Package</th>
 <th>Resolved Package</th>
-</tr></thead>
-<tbody>
+</tr>
+</thead><tbody>
 <tr>
 <td>foo-3.2</td>
 <td>!foo</td>
@@ -1058,9 +1025,9 @@ eek-5.4.3
 <td>!foo-3</td>
 <td>foo-0+&lt;3</td>
 </tr>
-</tbody>
-</table><h2>
-<a name="weak-package-references" class="anchor" href="#weak-package-references"><span class="octicon octicon-link"></span></a>Weak Package References</h2>
+</tbody></table>
+
+<h2><a name='weak-package-references' class='anchor' href='#weak-package-references'></a> Weak Package References</h2>
 
 <p>A weak package reference is a way of saying “I do not need this package, but if it exists then it MUST lie within the version range I specify.” Consider this example for the theoretical package bah:</p>
 
@@ -1082,8 +1049,7 @@ eek-5.4.3
 
 <p>Note that the system does actually convert a weak package reference into the equivalent anti-package as soon as it sees it, and if it appears in a dot-graph then it will appear as this anti-package, rather than the weak package reference. A weak package reference, therefore, is just a shorthand notation used to create a conflict package.</p>
 
-<h2>
-<a name="rez-release" class="anchor" href="#rez-release"><span class="octicon octicon-link"></span></a>rez-release</h2>
+<h2><a name='rez-release' class='anchor' href='#rez-release'></a> rez-release</h2>
 
 <p>So now you know how to use rez-config to query the system for information; you know how to use rez-env to create run-time environments; and you know how to build, locally install and test packages in development. Now you probably want to be able to ‘release’ a package - that is, install it centrally so that production, and other developers, have access to it. ‘Rez-release’ is the tool which does this.</p>
 
@@ -1100,12 +1066,13 @@ eek-5.4.3
 <li><p>The version of your project is checked (this in in your package.yaml). If this version is &lt;= the currently-installed version, rez-release will abort. If this happens, you need to update your version, svn-checkin, and then rez-release once more (A note on version numbers - PLEASE follow the conventions outlined in the ‘Conventions’ chapter).</p></li>
 <li><p>For each variant, a clean copy of the project is checked out of svn into a clean subdirectory, and is built locally.</p></li>
 <li><p>If all variants build successfully, then each is installed centrally. When this happens, rez-release also installs a set of metadata files into a hidden directory called .metadata (you can find this in the same directory as the installed package.yaml file). The directory contains - the changelog for this release; a dump of the actual environment that the variant was built in; the svn location the release was tagged in; and the time when the release occurred.</p></li>
-<li><p>You are then presented with a release log, which you can add comments to. The log is loaded into an editor which is controlled by the environment variable REZ_RELEASE_EDITOR. If you close this editor without making any changes, rez-release will prompt you with a request to ‘(a)bort or (c)ontinue’ the release. This is normal behaviour and is not an error - much like command-line svn, the system is just giving you a chance to stop the release. To continue, type ‘c’ and .</p></li>
-<li><p>The svn ‘trunk’ of your project is then tagged under the new version number. This tag will appear at /.../.../foo/tags/.</p></li>
-</ol><p>It must be noted that, for those emergency situations, rez-release will allow you to release to a version that is earlier than the latest release. You can do this by specifying the flag --allow-not-latest. This should only be used when absolutely necessary. Rez-release will never let you release to an already-released version.</p>
+<li><p>You are then presented with a release log, which you can add comments to. The log is loaded into an editor which is controlled by the environment variable REZ_RELEASE_EDITOR. If you close this editor without making any changes, rez-release will prompt you with a request to ‘(a)bort or (c)ontinue’ the release. This is normal behaviour and is not an error - much like command-line svn, the system is just giving you a chance to stop the release. To continue, type ‘c’ and <Enter>.</p></li>
+<li><p>The svn ‘trunk’ of your project is then tagged under the new version number. This tag will appear at /.../.../foo/tags/<version>.</p></li>
+</ol>
 
-<h3>
-<a name="the-release-process" class="anchor" href="#the-release-process"><span class="octicon octicon-link"></span></a>The Release Process</h3>
+<p>It must be noted that, for those emergency situations, rez-release will allow you to release to a version that is earlier than the latest release. You can do this by specifying the flag --allow-not-latest. This should only be used when absolutely necessary. Rez-release will never let you release to an already-released version.</p>
+
+<h3><a name='the-release-process' class='anchor' href='#the-release-process'></a> The Release Process</h3>
 
 <p>A typical release process for a project would follow this checklist:</p>
 
@@ -1114,19 +1081,21 @@ eek-5.4.3
 <li>Check your changes into svn.</li>
 <li>Ensure your project is up-to-date with the svn repository (eg ‘svn update’);</li>
 <li>Run ‘rez-release’ from the terminal, in the same directory that contains package.yaml.</li>
-</ol><p>After successfully running rez-release, your package will have been released into the location specified by the environment variable $REZ_RELEASE_PACKAGES_PATH - this is the ‘central’ package location. This variable is automatically setup for you by rez. Recall the $REZ_PACKAGES_PATH variable, the one that rez uses to search for packages:</p>
+</ol>
+
+<p>After successfully running rez-release, your package will have been released into the location specified by the environment variable $REZ_RELEASE_PACKAGES_PATH - this is the ‘central’ package location. This variable is automatically setup for you by rez. Recall the $REZ_PACKAGES_PATH variable, the one that rez uses to search for packages:</p>
 
 <pre><code>${HOME}/packages:/some-configured-location/packages
 </code></pre>
 
-<p>REZ_RELEASE_PACKAGES_PATH will typically be the second entry, shown here in bold.
+<p>REZ_RELEASE_PACKAGES_PATH will typically be the second entry, shown here in bold.<br>
 Packages of Packages - Bundles and Wrappers</p>
 
 <p>So far we’ve talked a lot about packages, and how Rez resolves a package request in order to create a working environment. But is this enough to build an environment management system on top of? Let’s play devil’s advocate for a moment now, and point out two issues.</p>
 
-<p>Firstly, do we really want many users to keep having to re-resolve the same list of packages for, say, a particular show, or shot, or application, over and over again, every time they jump into that environment? There’s a few problems with this:
-This will probably cause quite a lot of file stats, as many users query many packages, probably over a network, and often in order to resolve the same environment, which seems wasteful.
-The environment can change at any time between requests. For example, if the request asks for “foo-1.2”, and a new foo patch is released, then one user might get that patch and another might not - it depends on when each user resolved a new environment. This may or may not be desirable.
+<p>Firstly, do we really want many users to keep having to re-resolve the same list of packages for, say, a particular show, or shot, or application, over and over again, every time they jump into that environment? There’s a few problems with this:<br>
+This will probably cause quite a lot of file stats, as many users query many packages, probably over a network, and often in order to resolve the same environment, which seems wasteful.<br>
+The environment can change at any time between requests. For example, if the request asks for “foo-1.2”, and a new foo patch is released, then one user might get that patch and another might not - it depends on when each user resolved a new environment. This may or may not be desirable.<br>
 What if the resolve fails? It’s probably not a good idea to expose many users to a problem like this, that is technical in nature, and that they shouldn’t really be having to worry about. An animator, for example, is not going to know how to fix a package resolution failure, and probably shouldn’t need to know either.</p>
 
 <p>Secondly - often working in a shot involves using several different applications. So, we probably need a way of grouping packages into separate lists, one for each application. For example, if you’re using Maya, why should you need to resolve a bunch of Houdini plugin packages? We need to have a way of grouping packages together, and somehow exposing them to the user. We might want to have a “Maya” package group, and a “Nuke” package group, or maybe a “Comp” package group that contains the Nuke package, as well as a few other compositing-specific packages. We may even want to have quite specific groupings - for example, a “maya-anim” package group for maya animators, and a “maya-fx” package group for vfx maya users.</p>
@@ -1135,8 +1104,7 @@ What if the resolve fails? It’s probably not a good idea to expose many users 
 
 <p>Two new kinds of package in this section help to deal with these issues, wrapper packages being perhaps the most significant.</p>
 
-<h2>
-<a name="bundles" class="anchor" href="#bundles"><span class="octicon octicon-link"></span></a>Bundles</h2>
+<h2><a name='bundles' class='anchor' href='#bundles'></a> Bundles</h2>
 
 <p>A bundle is just the name given to a package which does nothing but require a list of other packages. For example, an “rnd” package might collect a set of core technology packages into a single bundle. The “rnd” package’s package.yaml file might look like this:</p>
 
@@ -1161,8 +1129,7 @@ include(RezBuild)
 <pre><code>$] rez-run anim_maya_bundle-1 -- maya
 </code></pre>
 
-<h2>
-<a name="wrappers" class="anchor" href="#wrappers"><span class="octicon octicon-link"></span></a>Wrappers</h2>
+<h2><a name='wrappers' class='anchor' href='#wrappers'></a> Wrappers</h2>
 
 <p>A wrapper is a package that creates a package resolve, and a set of scripts which act as entry points into the resolved environment. Think of wrappers as pre-resolved, ‘baked’ environments, that have been configured for a group of packages ahead of time.</p>
 
@@ -1272,8 +1239,7 @@ $] &gt; maya_anim&gt; houdini_vfx&gt; animmaya ---i
 $] &gt; maya_anim&gt; houdini_vfx&gt; maya_anim&gt; fun..?
 </code></pre>
 
-<h2>
-<a name="exposing-third-party-software-to-rez" class="anchor" href="#exposing-third-party-software-to-rez"><span class="octicon octicon-link"></span></a>Exposing Third-Party Software to Rez</h2>
+<h2><a name='exposing-third-party-software-to-rez' class='anchor' href='#exposing-third-party-software-to-rez'></a> Exposing Third-Party Software to Rez</h2>
 
 <p>So, rez-release is the tool used to centrally install packages that are developed internally. But what about third-party software and applications? They need to be exposed to Rez in the same way - that is, they need to have the correct directories present in the packages path, they need to supply a package.yaml, and they may need to supply a cmake module of their own.</p>
 
@@ -1283,28 +1249,23 @@ $] &gt; maya_anim&gt; houdini_vfx&gt; maya_anim&gt; fun..?
 
 <p>If the third-party package is a C++ library then it will need to provide a cmake file which follows the conventions outlined in the Rez-build chapter. This allows rez-build to determine the necessary cflags and ldflags in order to compile and link other packages with the library. In an internal package (ie one built with rez-build), this cmake file is typically generated by using the rez_install_cmake macro.</p>
 
-<h2>
-<a name="more-tools" class="anchor" href="#more-tools"><span class="octicon octicon-link"></span></a>More Tools</h2>
+<h2><a name='more-tools' class='anchor' href='#more-tools'></a> More Tools</h2>
 
 <p>There are a number of extra Rez tools that we haven’t described yet.</p>
 
-<h3>
-<a name="rez-make-yaml" class="anchor" href="#rez-make-yaml"><span class="octicon octicon-link"></span></a>rez-make-yaml</h3>
+<h3><a name='rez-make-yaml' class='anchor' href='#rez-make-yaml'></a> rez-make-yaml</h3>
 
 <p>When starting a new project, you’re going to need a new package.yaml, and this tool will generate one in the same directory it was called from. You’ll still need to edit it afterwards, but it does most of the ground work.</p>
 
-<h3>
-<a name="rez-info" class="anchor" href="#rez-info"><span class="octicon octicon-link"></span></a>rez-info</h3>
+<h3><a name='rez-info' class='anchor' href='#rez-info'></a> rez-info</h3>
 
 <p>Prints information about the given package.</p>
 
-<h3>
-<a name="rez-diff" class="anchor" href="#rez-diff"><span class="octicon octicon-link"></span></a>rez-diff</h3>
+<h3><a name='rez-diff' class='anchor' href='#rez-diff'></a> rez-diff</h3>
 
 <p>This tool will list the differences between two versions of a package, or two sets of packages. It lists the changelog entries for each package, and can write this info out in html format.</p>
 
-<h3>
-<a name="rez-help" class="anchor" href="#rez-help"><span class="octicon octicon-link"></span></a>rez-help</h3>
+<h3><a name='rez-help' class='anchor' href='#rez-help'></a> rez-help</h3>
 
 <p>Displays help for a package, if help is available. The following examples show how to add help entries to your package.yaml file. Note that you can use the special expanding variable !ROOT! in help entries as well - you will need to do this when referencing documents that have been installed as part of the package.</p>
 
@@ -1317,33 +1278,27 @@ help:
 - [ “reference manual”, ‘kpdf !ROOT!/docs/refman.pdf’ ]
 </code></pre>
 
-<h3>
-<a name="rez-which" class="anchor" href="#rez-which"><span class="octicon octicon-link"></span></a>rez-which</h3>
+<h3><a name='rez-which' class='anchor' href='#rez-which'></a> rez-which</h3>
 
 <p>This tool prints the path to the most recent package which falls within the version range you ask for. For example, ‘rez-which rv-3’ might print ‘/rez/packages/rv/3.10.11’. Note that rez-which is in no way affected by the current environment.</p>
 
-<h3>
-<a name="rez-config-list" class="anchor" href="#rez-config-list"><span class="octicon octicon-link"></span></a>rez-config-list</h3>
+<h3><a name='rez-config-list' class='anchor' href='#rez-config-list'></a> rez-config-list</h3>
 
 <p>This tool will list the name, authors and description of the latest version of every package that it finds in a given directory, which defaults to the value of REZ_RELEASE_PACKAGES_PATH. Think of it as a command-line software catalogue. Third-party packages typically don’t include a description in their package.yaml, and they are ignored. Package information is printed to a single line, so you can use grep or other filtering utilities to narrow down your search.</p>
 
-<h3>
-<a name="rez-depends" class="anchor" href="#rez-depends"><span class="octicon octicon-link"></span></a>rez-depends</h3>
+<h3><a name='rez-depends' class='anchor' href='#rez-depends'></a> rez-depends</h3>
 
 <p>This tool will give you a list and/or a dot-graph describing all the packages that use a particular package(s). For example, you might want to know what packages need to be updated because a new version of houdini has been installed.</p>
 
-<h2>
-<a name="conventions" class="anchor" href="#conventions"><span class="octicon octicon-link"></span></a>Conventions</h2>
+<h2><a name='conventions' class='anchor' href='#conventions'></a> Conventions</h2>
 
 <p>There are some conventions that are adhered to in Rez. These are not forced by the system, they are just followed in order to standardise things somewhat. Please continue to adhere to these conventions when adding content to Rez.</p>
 
-<h3>
-<a name="ext-symlink-for-3rd-party-software" class="anchor" href="#ext-symlink-for-3rd-party-software"><span class="octicon octicon-link"></span></a>‘ext’ symlink for 3rd-party software</h3>
+<h3><a name='ext-symlink-for-3rd-party-software' class='anchor' href='#ext-symlink-for-3rd-party-software'></a> ‘ext’ symlink for 3rd-party software</h3>
 
 <p>This has already been covered in ‘Exposing third-party software to Rez’.</p>
 
-<h3>
-<a name="single-variants" class="anchor" href="#single-variants"><span class="octicon octicon-link"></span></a>single variants</h3>
+<h3><a name='single-variants' class='anchor' href='#single-variants'></a> single variants</h3>
 
 <p>You will often see packages which contain a single variant, which often contains just a single package, referring to the platform. For example:</p>
 
@@ -1365,20 +1320,19 @@ help:
 
 <p>The order of packages within the single variant is just a convention also, but you should always list them in order of their significance. For example, ‘platform’ should always be the first package to be listed.</p>
 
-<h3>
-<a name="versioning-internal-software" class="anchor" href="#versioning-internal-software"><span class="octicon octicon-link"></span></a>Versioning (Internal Software)</h3>
+<h3><a name='versioning-internal-software' class='anchor' href='#versioning-internal-software'></a> Versioning (Internal Software)</h3>
 
 <p>Correctly versioning your packages, and your packages’ dependencies, is important. Please follow the guidelines listed here as closely as possible. Note that these guidelines refer only to packages that are developed internally - for external software, see the next section.</p>
 
 <p>The following table describes the versioning scheme that should be used for different types of packages. If a package contains multiple different types of targets (for example, C++ and python) then it should use the more verbose versioning scheme (ie, the one with more numbers).</p>
 
-<table>
-<thead><tr>
+<table><thead>
+<tr>
 <th>Package Type</th>
 <th>Versioning Scheme</th>
 <th>Version Update Strategy</th>
-</tr></thead>
-<tbody>
+</tr>
+</thead><tbody>
 <tr>
 <td>C++</td>
 <td>MAJOR.MINOR.PATCH</td>
@@ -1399,8 +1353,9 @@ help:
 <td>MAJOR [ .MINOR ]</td>
 <td>Select the appropriate versioning scheme depending on the situation.</td>
 </tr>
-</tbody>
-</table><p>Please note that if an API does not change, but the underlying implementation changes in such a way that the API changes behaviour, then this is still regarded as an API change. For example, consider the following changes to a C++ package:</p>
+</tbody></table>
+
+<p>Please note that if an API does not change, but the underlying implementation changes in such a way that the API changes behaviour, then this is still regarded as an API change. For example, consider the following changes to a C++ package:</p>
 
 <pre><code>(in foo.h)
 int getNumFoo();
@@ -1422,12 +1377,12 @@ int getNumFoo()
 
 <p>The following table describes the versioning scheme that should be used when listing requirements for a package. If a required package contains different types of targets, then the versioning scheme you should use depends on which parts of the package you use - for example, if you just use the python part of a package, then you should follow the python dependency versioning scheme. However if you were using both the python and C++ APIs of a package, then you should use the more verbose versioning scheme.</p>
 
-<table>
-<thead><tr>
+<table><thead>
+<tr>
 <th>Required Package Type</th>
 <th>Versioning Scheme</th>
-</tr></thead>
-<tbody>
+</tr>
+</thead><tbody>
 <tr>
 <td>C++</td>
 <td>MAJOR.MINOR</td>
@@ -1444,13 +1399,13 @@ int getNumFoo()
 <td>Other (data, configuration information)</td>
 <td>[ MAJOR ]</td>
 </tr>
-</tbody>
-</table><p>Package requirements’ versioning is less explicit than the packages themselves. This is to minimise the amount of re-releasing of packages that has to occur - it stands to reason that if a new package version is released, but its interface does not break backwards compatibility, and it’s behaviour doesn’t change (except to fix a bug or add new functionality, within reason), then it should not be necessary to re-release packages that are dependent on it.</p>
+</tbody></table>
+
+<p>Package requirements’ versioning is less explicit than the packages themselves. This is to minimise the amount of re-releasing of packages that has to occur - it stands to reason that if a new package version is released, but its interface does not break backwards compatibility, and it’s behaviour doesn’t change (except to fix a bug or add new functionality, within reason), then it should not be necessary to re-release packages that are dependent on it.</p>
 
 <p>Of particular note is the versioning scheme of python/script requirements. In theory, if you have a package that depends on a python module “pyFoo”, and at the time of creating this package, it was developed with, say, “pyFoo-3.4.1”, then you should be able to list your requirement as “pyFoo-3.4+&lt;4”. This is because versions such as 3.5, 3.6 etc should retain API backwards compatibility, but 4.X probably won’t. The “3.4+” is needed, because you might be using a feature that exists in 3.4.X, but was only introduced recently, and doesn’t exist in, say, “3.2.X”. In practise, this versioning approach may be too loose though - it may be that simply sticking to MAJOR.MINOR is the safer approach, and the extra package releases needed as a result are a worthwhile tradeoff. The jury is out on this at the moment.</p>
 
-<h3>
-<a name="versioning-external-software" class="anchor" href="#versioning-external-software"><span class="octicon octicon-link"></span></a>Versioning (External Software)</h3>
+<h3><a name='versioning-external-software' class='anchor' href='#versioning-external-software'></a> Versioning (External Software)</h3>
 
 <p>Versioning of external software requirements is different to versioning of internal requirements, because we have no control over their ABI/API changes with respect to their version numbers - this is up to the vendor. There are three different ways in which versioning of external requirements is dealt with:</p>
 
@@ -1458,18 +1413,19 @@ int getNumFoo()
 <li><p>The package requirement is versioned erring on the side of explicitness. For example, we may list “houdini-11.0.504” as a requirement, even though switching to “houdini-11.0.505” may not have actually required a re-release of our package (11.0.505 may just have contained ABI-compatible bug fixes, but we can’t know for sure). In a sense, this approach means that we are distrusting of the vendor (purely with respect to version change methodology).</p></li>
 <li><p>The package requirement is versioned the same way as an internal requirement, because we trust the vendor.</p></li>
 <li><p>The package requirement is versioned using a strategy known as ABI Grouping. With this approach, a package “foo” is made dependent on an ABI package, such as “foo_abi-1”, which in turn is dependent on a range of foo versions. This package does nothing, and is only used to signify that a group of foo packages share a common ABI. Note though that this approach is clunky, and in future a new rez feature (name undecided but might be “features”) will be used instead.</p></li>
-</ol><h2>
-<a name="troubleshooting" class="anchor" href="#troubleshooting"><span class="octicon octicon-link"></span></a>Troubleshooting</h2>
+</ol>
 
-<p>Q. When I attempt to install a package locally, I get a bunch of errors because the system tries to install into /usr/lib/...
+<h2><a name='troubleshooting' class='anchor' href='#troubleshooting'></a> Troubleshooting</h2>
+
+<p>Q. When I attempt to install a package locally, I get a bunch of errors because the system tries to install into /usr/lib/...<br>
 A. You’re probably calling project(project_name) directly in your CMakeLists.txt file. Remove this function call and try again. You do not need to set the name of your project - this is done for you when you include(RezBuild).</p>
 
-<p>Q. I lose executable permissions on the python script I’ve installed, what gives?
+<p>Q. I lose executable permissions on the python script I’ve installed, what gives?<br>
 A. If you want to install a python script that you execute directly (ie that contains a python shebang) then you should install it as a file using rez_install_files (specifying the optional EXECUTABLE argument), <em>not</em> as a python script via rez_install_python. Rez_install_python is meant to be used to install only .py files, not python-shebanged scripts.</p>
 
-<p>Q. I’m writing a project that uses a library, which uses a particular version of boost (for example). But when I try and build my project, I either get missing boost headers or unresolved boost symbols. What’s going on?
-A. If you are using a package directly in your project, then you need to list it directly as a requirement, even if other packages you require are using it anyway. In this case, you need to list boost as a requirement.
-Q2. Ok, but then how do I know which version of boost to list as a requirement? I’d like to say “the same version of boost as the other library I’m using,” but how can I do that?
+<p>Q. I’m writing a project that uses a library, which uses a particular version of boost (for example). But when I try and build my project, I either get missing boost headers or unresolved boost symbols. What’s going on?<br>
+A. If you are using a package directly in your project, then you need to list it directly as a requirement, even if other packages you require are using it anyway. In this case, you need to list boost as a requirement.<br>
+Q2. Ok, but then how do I know which version of boost to list as a requirement? I’d like to say “the same version of boost as the other library I’m using,” but how can I do that?<br>
 A2. Just list “boost” as a requirement, with a comment stating that the version is going to be resolved by the other lib. For example:</p>
 
 <pre><code>requires:
@@ -1479,11 +1435,9 @@ A2. Just list “boost” as a requirement, with a comment stating that the vers
 
 <p>Astute readers may notice that this advice seems to run counter to the Common Pitfalls section entitled ‘Inexact package dependencies in C++ projects’. But this is a special case, which does occasionally crop up - we know that ‘foo’ is going to resolve the version of boost, so we can be confident that we are describing our dependencies within ABI bounds. If foo were to drop boost as a dependency, we would then have to be explicit about the version of boost we wanted. This does imply some knowledge of foo’s dependencies, but sometimes this is inescapable. I intend to introduce a new Rez feature in future which will elegantly deal with this situation.</p>
 
-<h2>
-<a name="common-pitfalls" class="anchor" href="#common-pitfalls"><span class="octicon octicon-link"></span></a>Common Pitfalls</h2>
+<h2><a name='common-pitfalls' class='anchor' href='#common-pitfalls'></a> Common Pitfalls</h2>
 
-<h3>
-<a name="inexact-package-dependencies-in-c-projects" class="anchor" href="#inexact-package-dependencies-in-c-projects"><span class="octicon octicon-link"></span></a>Inexact package dependencies in C++ projects</h3>
+<h3><a name='inexact-package-dependencies-in-c-projects' class='anchor' href='#inexact-package-dependencies-in-c-projects'></a> Inexact package dependencies in C++ projects</h3>
 
 <p>So you’ve written a houdini plugin, and you decide you want to build it against the latest version of houdini. No problem, you put this in your package.yaml:</p>
 
@@ -1495,39 +1449,37 @@ A2. Just list “boost” as a requirement, with a comment stating that the vers
 
 <p>When building compiled projects, always state your dependencies in terms of ABI compatibility. Rez cannot do the thinking for you, as it makes no differentiation between types of projects, and doesn’t know, nor care, about ABI compatibility - that’s the programmer’s job.</p>
 
-<h2>
-<a name="system-environment-variables" class="anchor" href="#system-environment-variables"><span class="octicon octicon-link"></span></a>System Environment Variables</h2>
+<h2><a name='system-environment-variables' class='anchor' href='#system-environment-variables'></a> System Environment Variables</h2>
 
 <p>The following is a list of environment variables that Rez uses to control its state. As a general rule, you should never change these values directly - special cases are mentioned explicitly.</p>
 
 <p>The following values can be set by the user prior to initialising Rez (ie, before sourcing the Rez init.sh). They control aspects of its behaviour:</p>
 
-<p>REZ_RELEASE_EDITOR - Default application for editing release notes, defaults to ‘kedit’.
+<p>REZ_RELEASE_EDITOR - Default application for editing release notes, defaults to ‘kedit’.<br>
 REZ_DOT_IMAGE_VIEWER - Default application for viewing dot-graph images, defaults to ‘xnview’.</p>
 
 <p>The following values are set by the system:</p>
 
-<p>REZ_INITIALIZED - Set to ‘1’ if Rez has been initialised.
-REZ_PATH - Path to the Rez installation
-REZ_VERSION - Version of current Rez.
-REZ_PACKAGES_PATH - Colon-delimited list of paths to search for packages in. You can change this value directly - typically you’d do this in order to search for central-only packages.
-REZ_RELEASE_PACKAGES_PATH - The directory to which rez-release will install packages. If Rez is not within the context of a particular show then this value is usually the same as $REZ_SOFTWARE_PACKAGES_PATH
+<p>REZ_INITIALIZED - Set to ‘1’ if Rez has been initialised.<br>
+REZ_PATH - Path to the Rez installation<br>
+REZ_VERSION - Version of current Rez.<br>
+REZ_PACKAGES_PATH - Colon-delimited list of paths to search for packages in. You can change this value directly - typically you’d do this in order to search for central-only packages.<br>
+REZ_RELEASE_PACKAGES_PATH - The directory to which rez-release will install packages. If Rez is not within the context of a particular show then this value is usually the same as $REZ_SOFTWARE_PACKAGES_PATH<br>
 REZ_SOFTWARE_PACKAGES_PATH - Describes the central software packages directory, should be /rez/packages. It exists so that it may be changed for testing purposes.</p>
 
 <p>The following values exist only when inside a rez-env shell:</p>
 
-<p>REZ_CONTEXT_FILE - File which contains all information necessary to recreate the current environment. It contains a list of bash commands, so it can be sourced directly.
-REZ_FAILED_ATTEMPTS - The number of failed configuration attempts that occurred before the current environment was successfully resolved.
-REZ_REQUEST - The list of packages that was requested (ie passed to rez-env) to create the current environment.
-REZ_RESOLVE_MODE - The resolution mode that was used to create the current environment (usually ‘latest’).
-REZ_RESOLVE - The list of packages that the current environment was resolved to.
+<p>REZ_CONTEXT_FILE - File which contains all information necessary to recreate the current environment. It contains a list of bash commands, so it can be sourced directly.<br>
+REZ_FAILED_ATTEMPTS - The number of failed configuration attempts that occurred before the current environment was successfully resolved.<br>
+REZ_REQUEST - The list of packages that was requested (ie passed to rez-env) to create the current environment.<br>
+REZ_RESOLVE_MODE - The resolution mode that was used to create the current environment (usually ‘latest’).<br>
+REZ_RESOLVE - The list of packages that the current environment was resolved to.<br>
 REZ_ENV_PROMPT - Internal variable for setting prompt visual cue when in a rez-env environment (&gt;).</p>
 
-<p>With the addition of branching support, there is a new environment variable used as a branching killswitch:
+<p>With the addition of branching support, there is a new environment variable used as a branching killswitch:<br>
 REZ_INGORE_BRANCHES - when set to 1, rez-config will ignore all branches on disk. This can be used if something catastrophic happens in the branching code and we need to quickly disable all branching support.</p>
 
-<h2>
-<a name="further-work" class="anchor" href="#further-work"><span class="octicon octicon-link"></span></a>Further Work</h2>
+<h2><a name='further-work' class='anchor' href='#further-work'></a> Further Work</h2>
 
 <p>This section is a braindump of possible future work on rez. Some of this may never happen, some of it might be a bad idea, it’s really just jotting down lots of ideas so I don’t forget them.</p>
 
@@ -1539,7 +1491,7 @@ REZ_INGORE_BRANCHES - when set to 1, rez-config will ignore all branches on disk
 
 <p>support ‘features’. A feature would be something a package claims it has. Other packages could then say that they want a package with a particular feature. For example, you might have a package that serialises some kind of data, and some versions have xml serialisation and some don’t. Maybe this package has a ‘feature’ in its yaml it calls ‘xml’, so other packages can ask for the package like so: “foo-1:xml” - that is, “give me the foo package 1(.X.X.X) that also has the ‘xml’ feature.” ABI grouping for 3rd party C++ libraries could work this way also.</p>
 
-<p>Support variants with custom labels rather than forcing them to have packages in their install path. For example, if you need to have a version range in a variant then you’re gonna end up with something like “foo-1+&lt;4” in your install path, which may not even be valid on some OSes. Also, consider once we have ‘features’. It would make sense to sometimes want variants based on different features but no actual packages. In this case something has to go into the variant path, because they need to differ from each other, but what? We would need the ability to specify custom variant labels in this case. So in other words, currently we do this:
+<p>Support variants with custom labels rather than forcing them to have packages in their install path. For example, if you need to have a version range in a variant then you’re gonna end up with something like “foo-1+&lt;4” in your install path, which may not even be valid on some OSes. Also, consider once we have ‘features’. It would make sense to sometimes want variants based on different features but no actual packages. In this case something has to go into the variant path, because they need to differ from each other, but what? We would need the ability to specify custom variant labels in this case. So in other words, currently we do this:<br>
 variants:</p>
 
 <ul>
@@ -1548,7 +1500,9 @@ but now we would also be able to do this:
 variants:</li>
 <li>[ “py25” ]
 The variant’s actual info (required packages, features etc) would reside in the new variant-specific location (where other stuff such as variant-specific commands will go).</li>
-</ul><p>support per-variant commands</p>
+</ul>
+
+<p>support per-variant commands</p>
 
 <p>support hidden variant packages (ie they don’t end up in the install path). Can be thought of simply as variant-specific requires, and might make sense to model them this way too.</p>
 
@@ -1610,10 +1564,10 @@ The variant’s actual info (required packages, features etc) would reside in th
 
 <p>Current Issues</p>
 
-<p>rez-run doesn’t work directly on wrapper scripts, eg this works:
-$] rez-run mywrapper -- wrapscript -- my_cmd
-...but this doesn’t:
-$] rez-env mywrapper
+<p>rez-run doesn’t work directly on wrapper scripts, eg this works:<br>
+$] rez-run mywrapper -- wrapscript -- my_cmd<br>
+...but this doesn’t:<br>
+$] rez-env mywrapper<br>
 $] &gt; rez-run wrapscript -- my_cmd</p>
 
 <p>rez-release doesn’t let you release if your code is all up-to-date but someone else has added new files to the project in svn. I’d actually count this as an SVN bug. Current workaround is to simply do a fresh checkout and release from there.</p>
@@ -1629,7 +1583,7 @@ $] &gt; rez-run wrapscript -- my_cmd</p>
 <p>When paring down a resolve dot-graph using --package or --conflict-only flags, the node shapes and colours are lost.</p>
 
 <p>Ambiguities arise when you have a package foo-1.3 for eg, but also a foo-1.3.1 package. This can happen, albeit rarely, and usually happens with 3rd-party packages - we realise we need an internal build, but foo-1.4 is already installed, so foo-1.3.1 is made. There is currently no way to express “foo-1.3” without meaning foo-1.3[.X.X.X...]. We need the ability to do this. I am thinking perhaps a trailing dot, as in “foo-1.3.”, which means “1.3 and ONLY 1.3”. The version code would need to be updated to take this into account.</p>
-      </section>
+</section>
     </div>
 
     <!-- FOOTER  -->
@@ -1639,8 +1593,5 @@ $] &gt; rez-run wrapscript -- my_cmd</p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
   </body>
 </html>

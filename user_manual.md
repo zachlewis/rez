@@ -1,58 +1,4 @@
-# Rez User Manual
-
-- [Introduction](#introduction)
-	- [What Is Rez?](#what-is-rez)
-	- [What Is Rez Not?](#what-is-rez-not)
-- [Overview](#overview)
-- [Basic Concepts](#basic-concepts)
-- [Versioning](#versioning)
-- [rez-config](#rez-config)
-- [Packages](#packages)
-- [rez-env](#rez-env)
-- [Patching](#patching)
-- [Piping and rez-run](#piping-and-rez-run)
-- [Failed Resolves](#failed-resolves)
-- [Package Variants](#package-variants)
-- [rez-build](#rez-build)
-	- [Case 1: Not invoking make](#case-1-not-invoking-make)
-	- [Case 2: Invoking make](#case-2-invoking-make)
-	- [Cmake Arguments](#cmake-arguments)
-	- [Make Arguments](#make-arguments)
-	- [Local Package Installs](#local-package-installs)
-	- [Cmake Integration](#cmake-integration)
-	- [CMake Modules](#cmake-modules)
-		- [rez_install_cmake](#rez_install_cmake)
-		- [rez_install_files](#rez_install_files)
-		- [rez_install_python](#rez_install_python)
-	- [Build-time Dependencies](#build-time-dependencies)
-	- [Building Custom Targets](#building-custom-targets)
-- [Timestamping](#timestamping)
-- [Anti-Packages and the Conflict Operator](#anti-packages-and-the-conflict-operator)
-- [Weak Package References](#weak-package-references)
-- [rez-release](#rez-release)
-	- [The Release Process](#the-release-process)
-- [Bundles](#bundles)
-- [Wrappers](#wrappers)
-- [Exposing Third-Party Software to Rez](#exposing-third-party-software-to-rez)
-- [More Tools](#more-tools)
-	- [rez-make-yaml](#rez-make-yaml)
-	- [rez-info](#rez-info)
-	- [rez-diff](#rez-diff)
-	- [rez-help](#rez-help)
-	- [rez-which](#rez-which)
-	- [rez-config-list](#rez-config-list)
-	- [rez-depends](#rez-depends)
-- [Conventions](#conventions)
-	- [‘ext’ symlink for 3rd-party software](#ext-symlink-for-3rd-party-software)
-	- [single variants](#single-variants)
-	- [Versioning (Internal Software)](#versioning-internal-software)
-	- [Versioning (External Software)](#versioning-external-software)
-- [Troubleshooting](#troubleshooting)
-- [Common Pitfalls](#common-pitfalls)
-	- [Inexact package dependencies in C++ projects](#inexact-package-dependencies-in-c-projects)
-- [System Environment Variables](#system-environment-variables)
-- [Further Work](#further-work)
-
+<br>
 ## Introduction
 ### What Is Rez?
 Rez is a suite of tools for resolving a list of ‘packages’ (versioned software) and their dependencies, into an environment that does not contain any version clashes. Rez also includes a cmake-based build system, which is integrated into the package resolution system, and a deployment system, for publishing new packages.
@@ -74,11 +20,9 @@ The ‘package resolution algorithm’ is the main component of Rez and is writt
 
 There are four major tools that make up the system, and a smattering of support tools. They can be thought of as a stack, where the tools at the bottom underpin those at the top:
 
-IMG
+!!! "type":"img", "src":"images/stack.jpg", "alt":"Application stack"
 
 This manual will start with the basic concepts of the system, and will illustrate its use in a run-time context. Later chapters will introduce the build system support, and more advanced topics. Tools will be introduced from the bottom of the stack upwards - it is necessary to understand the underpinning tools first, before their dependent tools can be described.
-
-A note on conventions in this document. Blue text like this illustrates commands run on the terminal, command output, or file contents. Green text like this represents file system structures.
 
 
 ## Basic Concepts
@@ -100,7 +44,7 @@ A package is a particular version of a piece of software, or possibly data or co
 
 Packages have dependencies, ie other packages that they need in order to function. When you request a list of packages from rez, it analyses the dependencies of all the packages in the request, and returns you a resolved list of all the packages you actually need. For example, consider the following:
 
-IMG
+!!! "type":"img", "src":"images/deps1.jpg", "alt":"Dependency example"
 
 In this example, there are five packages on disk (for the moment we don’t care where they actually reside on the file system). Let the arrows in the diagram, and in all diagrams from here on, denote dependencies - for example, package hey-1.8.0 requires package ho-5.0.0.
 
@@ -111,7 +55,7 @@ Let’s say that we want to make a request for the packages foo-1.0.0 and hey-1.
 
 Let’s take a slightly different example:
 
-IMG
+!!! "type":"img", "src":"images/deps2.jpg", "alt":"Dependency example"
 
 Here the result of a rez-config request would be:
 
@@ -219,7 +163,7 @@ What the? The configuration did not fail... but notice that it’s returned us a
 
 rez-config, when run in ‘mode=latest’, will give you back the latest possible combination of packages that you asked for. This may not necessarily be the very latest version of every package. In this example, houdini-11.0.477 is not compatible with boost-1.33.1, so that combination was not chosen. This diagram illustrates the resolution process that took place:
 
-IMG
+!!! "type":"img", "src":"images/resolve_algo.jpg", "alt":"Resolve example"
 
 Here, the stack of houdini versions illustrate the packages that rez-config found on disk. The houdini versions in blue require boost-1.37.0, and those in yellow require boost-1.33.1. Rez-config can’t know this ahead of time, so it starts with the latest version of houdini and attempts to resolve that configuration. If that fails, it moves down to the next latest version, and tries again1. It will do this until a match is found, or all versions of houdini are exhausted. You can see that in this case, it took three attempts before a valid configuration was found. If there are multiple inexact packages in a request, then rez-config will perform this kind of search recursively.
 
@@ -345,7 +289,9 @@ If you ever need to remind yourself of what shell you are in, you can use the he
 
 If you are ever curious about exactly how the current environment was resolved - and why exactly did I end up with Qt-4.2.0 rather than Qt-4.5.3? - the rez-context-image tool is very useful. Here is an example, showing how the environment was resolved for “latest vacuumHoudini”:
 
-IMG
+<br>
+!!! "type":"img", "src":"images/full_resolve.jpg", "alt":"Typical resolve", "scale":0.6
+
 
 Nodes in the ‘request’ box are the packages that were requested, and green nodes are the packages that were resolved for the current environment. The arrows show relationships between packages, and there are three different types:
 
@@ -463,7 +409,8 @@ Rez-config is able to create a dot-graph showing the resolution process for a su
 
 	number of failed attempts: 0
 
-IMG
+<br>
+!!! "type":"img", "src":"images/small_resolve.jpg", "alt":"Example resolve", "scale":0.7
 
 From this graph we can see that the “nkDefocus” package indirectly depends on “python-2.5”, via “nuke-6.2”. So what happens when we try another request, this time with a different python version, 2.6:
 
@@ -490,7 +437,8 @@ At this point, what you need to do is run the same package request through rez-c
 
 	$] rez-config --max-fails=0 --dot-file=fail.jpg nkDefocus python-2.6
 
-IMG
+<br>
+!!! "type":"img", "src":"images/failed_resolve.jpg", "alt":"Failed resolve", "scale":0.7
 
 Here we can see what has happened - python-2.5 is required by nuke-6.2.4, which rez-config resolved (ie found on the file system) from a request for nuke-6.2, which was required by nkDefocus-0.0.0, which was resolved from the request for nkDefocus... which clashes with the request for python-2.6. The conflict is shown as a bold red arrow labelled “CONFLICT” (in case you missed it).
 
@@ -499,7 +447,8 @@ This graph can get extremely big, if lots of packages are involved. It can becom
 	$] rez-config --max-fails=0 --dot-file=fail.dot nkDefocus python-2.6
 	$] rez-dot --conflict-only fail.dot
 
-IMG
+<br>
+!!! "type":"img", "src":"images/failed_resolve_conflict_only.jpg", "alt":"Failed resolve", "scale":0.7
 
 
 ## Package Variants
@@ -1296,14 +1245,3 @@ Anti-packages aren’t retained in the resolve, they probably should be. This ha
 When paring down a resolve dot-graph using --package or --conflict-only flags, the node shapes and colours are lost.
 
 Ambiguities arise when you have a package foo-1.3 for eg, but also a foo-1.3.1 package. This can happen, albeit rarely, and usually happens with 3rd-party packages - we realise we need an internal build, but foo-1.4 is already installed, so foo-1.3.1 is made. There is currently no way to express “foo-1.3” without meaning foo-1.3[.X.X.X...]. We need the ability to do this. I am thinking perhaps a trailing dot, as in “foo-1.3.”, which means “1.3 and ONLY 1.3”. The version code would need to be updated to take this into account.
-
-
-
-
-
-
-
-
-
-
-

@@ -270,7 +270,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 800px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -358,8 +358,12 @@ Full-Width Styles
   background: url(../images/sprite_download.png) no-repeat top right;
 }
 
+#toc {
+  font-size:12px;
+}
+
 #main_content_wrap {
-  background: #f2f2f2;
+  background: #ffffff;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
