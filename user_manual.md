@@ -1,5 +1,4 @@
 <br>
-TESTING
 
 ## Introduction
 ### What Is Rez?
