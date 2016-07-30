@@ -1,4 +1,6 @@
 <br>
+TESTING
+
 ## Introduction
 ### What Is Rez?
 Rez is a suite of tools for resolving a list of ‘packages’ (versioned software) and their dependencies, into an environment that does not contain any version clashes. Rez also includes a cmake-based build system, which is integrated into the package resolution system, and a deployment system, for publishing new packages.
@@ -634,9 +636,9 @@ The top-most cmake build file (that is, the CMakeLists.txt in the same directory
 	set(boost_COMPONENTS program_options)
 Here is an example of some variables being set, which control aspects of a package which we are building against. Specifically, we are specifying that we want to statically link against boost, and that we want to use the boost program_options library.
 
-Every package can have different input variables, or even none at all. What these variables are, and what they do, is dictated by the package itself. Many packages are installed with their own cmake module, which is typically installed under a ‘cmake’ subdirectory, with the file name <package_name>.cmake. Typically, packages with cmake modules are compiled libraries - a package containing only python scripts for example, would not typically provide its own cmake module. 
+Every package can have different input variables, or even none at all. What these variables are, and what they do, is dictated by the package itself. Many packages are installed with their own cmake module, which is typically installed under a ‘cmake’ subdirectory, with the file name <package_name>.cmake. Typically, packages with cmake modules are compiled libraries - a package containing only python scripts for example, would not typically provide its own cmake module.
 
-A package providing its own cmake module will expose this module to cmake by adding the path to $CMAKE_MODULE_PATH, via a command in its package.yaml. If you are using a package which provides its own cmake module, you should refer to the module itself for any documentation describing 
+A package providing its own cmake module will expose this module to cmake by adding the path to $CMAKE_MODULE_PATH, via a command in its package.yaml. If you are using a package which provides its own cmake module, you should refer to the module itself for any documentation describing
 what variables are available to set.
 
 Please note that setting input variables such as these MUST happen before calling the next function, ‘rez_find_packages’.
@@ -921,7 +923,7 @@ The wrapper scripts rez creates (“animmaya” etc) can do more than just execu
 	$] rez-env maya_anim houdini_vfx
 	$] >
 	$] > vfxhoudini ---i
-	$] > houdini_vfx> 
+	$] > houdini_vfx>
 	$] > houdini_vfx> echo $REZ_RESOLVE
 	houdini-12.0.10 shatter-1.0.0 explode-0.4.1 fxUtils-2.1.0
 
@@ -1216,7 +1218,7 @@ package-version forcing option, for debugging purposes? Is this a good idea? It 
 
 Make detection of env-var overwriting more foolproof, it’s a bit clunky at the moment.
 
-Store the current resolve in a proprietary rez text format, probably parsed using boost.spirit 
+Store the current resolve in a proprietary rez text format, probably parsed using boost.spirit
 
 Should bash be abandoned as the language for package.yaml commands, in favour of an internal rez language with commands for common actions (setting an env-var, append/prefix an env-var, define an alias etc)? This wasn’t done because pure bash proved the fastest way to get the system up and running, and is the most flexible approach (for eg, a package can source a script in its yaml commands if it wants to, to do some particularly complex setup. However this causes problems of its own - eg the env-var overwrite detection in rez won’t pick this up. Furthermore, this was never done).
 
